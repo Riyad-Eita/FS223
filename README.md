@@ -1,2 +1,3 @@
-# FS223
-A software with which you can create "Ausbildungsnachweise" 
+# Apprenticeship repoter / Ausbildungsnachweise Generator
+## Introduction
+This application generates the weekly reports of our apprenticeship automatically.
