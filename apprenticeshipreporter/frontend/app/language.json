@@ -1,0 +1,16 @@
+{
+	"en": {
+		"theme": {
+			"dark": "Dark",
+			"light": "Light",
+			"system": "System"
+		}
+	},
+  "de": {
+		"theme": {
+			"dark": "Dunkel",
+			"light": "Hell",
+			"system": "System"
+		}
+	}
+}
