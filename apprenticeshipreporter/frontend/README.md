@@ -1,3 +1,28 @@
+# Development of the apprenticeship reporter
+
+## Components
+
+### Frontend
+
+- React, TypeScript
+- Tailwind CSS
+- ESLint
+
+### Backend
+
+- SpringBoot, Java
+
+### Database
+
+- MySQL
+
+### Containerization
+
+- Docker
+  - Dockerfile for automatisation
+
+#
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
