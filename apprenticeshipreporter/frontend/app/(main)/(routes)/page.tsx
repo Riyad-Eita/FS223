@@ -25,7 +25,7 @@ export default function Home() {
 		if (profile === null) {
 			setProfile(user.user);
 		}
-	}, []);
+	}, [profile, user.user]);
 
 	return (
 		<main className="min-h-full w-full">
