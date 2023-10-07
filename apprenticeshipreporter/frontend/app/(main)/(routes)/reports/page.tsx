@@ -2,7 +2,11 @@ import ReportsOverview from "@/components/reports/reports-overview";
 import { useProfiles, useReports } from "@/hooks/use-actions";
 
 const ReportsOverviewPage = () => {
-	return <>Reports</>;
+	return (
+		<>
+			<h2>Reports</h2>
+		</>
+	);
 };
 
 export default ReportsOverviewPage;
