@@ -32,13 +32,11 @@ const formSchema = z.object({
 	name: z.string().min(0, {
 		message: "Username is optional.",
 	}),
-	mail: z.string().email({
-		message: "Please enter a valid email address.",
+	mail: z.string().min(1, { message: "Email is required" }).email({
+		message: "Must be a valid email",
 	}),
-	pass: z.string().min(4, {
-		message: "Password has to be a at least 4 characters long.",
-	}),
-});
+	pass: z.string().min(6, { message: "Password must be atleast 6 characters" }),
+})
 
 export const SignUpModal = () => {
 	const { isOpen, onClose, type } = useModal();

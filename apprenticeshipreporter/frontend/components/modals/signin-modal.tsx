@@ -28,14 +28,20 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
-	name: z.string().min(1),
-	pass: z.string().min(1),
+	name: z.string().min(1, {
+		message: "Username or Email must be provided",
+	}),
+	pass: z.string().min(1, {
+		message: "Password must be provided",
+	}),
 });
 
 export const SignInModal = () => {
 	const { isOpen, onClose, type } = useModal();
+	const [formError, setFormError] = useState(false);
 	const router = useRouter();
 
 	const isModalOpen = isOpen && type === "login";
@@ -53,7 +59,6 @@ export const SignInModal = () => {
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
 			const response = await axios.post("/api/auth/signin", values);
-			console.log(response.headers)
 			if (response.data) {
 				toast.success("Login successful", {
 					position: toast.POSITION.TOP_CENTER,
@@ -64,6 +69,8 @@ export const SignInModal = () => {
 					draggable: true,
 					progress: undefined,
 				});
+				router.push(`/`);
+				handleClose();
 			} else {
 				toast.error("Login failed", {
 					position: toast.POSITION.TOP_CENTER,
@@ -74,6 +81,11 @@ export const SignInModal = () => {
 					draggable: true,
 					progress: undefined,
 				});
+				form.reset({
+					...values,
+					pass: "",
+				});
+				form.setFocus("pass");
 			}
 		} catch (e) {
 			console.error(e);
@@ -146,9 +158,12 @@ export const SignInModal = () => {
 							/>
 						</div>
 						<DialogFooter className="bg-grey-100 px-6 py-4">
-							<Button disabled={isLoading} variant="outline">
-								Login
-							</Button>
+							{(isLoading && (
+								<Button disabled>
+									<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+									Please wait
+								</Button>
+							)) || <Button variant="outline">Login</Button>}
 						</DialogFooter>
 					</form>
 				</Form>

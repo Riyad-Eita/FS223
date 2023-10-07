@@ -20,8 +20,6 @@ export async function POST(req: NextRequest) {
 
 		const body = await db.profiles.push(newUser);
 
-		console.log(db.profiles);
-
 		return NextResponse.json(body);
 	} catch (error) {
 		console.log("[SERVER_POST]", error);

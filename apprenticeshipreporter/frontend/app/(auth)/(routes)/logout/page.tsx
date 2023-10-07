@@ -3,14 +3,16 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useRedirectAfterSomeSeconds from "@/hooks/use-redirect-timer";
 
 const LogoutPage = () => {
+	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 5);
 	const [loggedOut, setLoggedOut] = useState(false);
 
 	useEffect(() => {
 		if (!loggedOut) {
 			logout();
-			setLoggedOut(true)
+			setLoggedOut(true);
 		}
 	}, [loggedOut]);
 
