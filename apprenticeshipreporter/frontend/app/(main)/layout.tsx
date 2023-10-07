@@ -5,21 +5,7 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import ForbiddenPage from "@/components/errors/forbidden-page";
-
-import useSWR from "swr";
-
-const fetcher = async () => {
-	const response = await fetch("/api/auth");
-	const data = await response.json();
-	return data;
-};
-
-const useUser = () => {
-	const { data, isLoading, error } = useSWR("auth", fetcher, {
-		refreshInterval: 1000,
-	});
-	return { user: data, isLoading, isError: error };
-};
+import { useUser } from "@/hooks/useUser";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	const { user, isLoading, isError } = useUser();
