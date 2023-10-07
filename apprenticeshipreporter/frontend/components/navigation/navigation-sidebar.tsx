@@ -10,10 +10,15 @@ import Image from "next/image";
 import { SettingsIcon } from "lucide-react";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { Button } from "@/components/ui/button";
+import SidebarSettings from "./sidebar-settings/sidebar-settings";
+import { ProfileType, DbType } from "@/types";
 
-export const NavigationSidebar = () => {
-	const profile = currentProfile();
+interface NavigationSidebarProps {
+	profile: ProfileType;
+	db: DbType;
+}
 
+export const NavigationSidebar = ({ profile, db }: NavigationSidebarProps) => {
 	if (!profile) {
 		return redirect("/");
 	}
@@ -54,15 +59,7 @@ export const NavigationSidebar = () => {
 						<ModeToggle />
 					</div>
 				</ActionTooltip>
-				<ActionTooltip side="right" align="center" label="Settings">
-					<Button
-						className="bg-transparent border-0"
-						variant="outline"
-						size="icon"
-					>
-						<SettingsIcon />
-					</Button>
-				</ActionTooltip>
+				<SidebarSettings {...profile} />
 			</div>
 		</div>
 	);

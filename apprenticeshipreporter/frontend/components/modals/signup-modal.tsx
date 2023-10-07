@@ -75,10 +75,10 @@ export const SignUpModal = () => {
 			<DialogContent className="bg-stone-700/10 text-[--card] p-0 overflow-hidden">
 				<DialogHeader className="pt-8 px-6">
 					<DialogTitle className="text-2xl text-center font-bold">
-						Welcome!
+					Create an account
 					</DialogTitle>
 					<DialogDescription className="text-center">
-						Sign up to access tool
+					Enter your information below to create your account
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...form}>

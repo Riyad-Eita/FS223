@@ -1,11 +1,13 @@
+import { ProfileType } from "@/types";
 import { type } from "os";
 import { create } from "zustand";
 
-export type ModalType = "signup" | "login";
+export type ModalType = "signup" | "login" | "invite";
 
 interface ModalData {
 	signup?: { username?: string; email: string; password: string };
 	signin?: { username: string; password: string };
+	profile?: ProfileType;
 }
 interface ModalStore {
 	type: ModalType | null;

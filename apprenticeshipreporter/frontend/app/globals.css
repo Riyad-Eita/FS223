@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
+#redb {
 	border: solid 1px red;
-} */
+}
 
 @layer base {
 	:root {

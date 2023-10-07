@@ -8,15 +8,27 @@ import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
+import { ProfileType } from "@/types";
+import { currentProfile } from "@/lib/current-profile";
+import { useUser } from "@/hooks/useUser";
 
 export default function Home() {
 	const params = useParams();
 	const router = useRouter();
+	const [profile, setProfile] = useState<ProfileType | null>(null);
+	const user = useUser();
+
+	useEffect(() => {
+		if (profile === null) {
+			setProfile(user.user);
+		}
+	}, []);
 
 	return (
 		<main className="min-h-full w-full">
 			<div className="h-full w-full">
 				<h2>Home</h2>
+				<p>{profile?.role}</p>
 				<Button
 					onClick={() => {
 						router.push(`/logout`);

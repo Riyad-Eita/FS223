@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";

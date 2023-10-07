@@ -2,11 +2,11 @@ import { v4 as uuid4 } from "uuid";
 import { NextRequest, NextResponse } from "next/server";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { Profile } from "@/types";
+import { ProfileType } from "@/types";
 
 export async function GET() {
 	try {
-		const activeUser: Profile | null = await currentProfile();
+		const activeUser: ProfileType | null = await currentProfile();
 
 		if (!activeUser) {
 			return new NextResponse("Unauthorized", { status: 401 });

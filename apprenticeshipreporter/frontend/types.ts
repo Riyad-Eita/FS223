@@ -1,13 +1,16 @@
-export type Profile = {
+export type DbType = { profiles?: ProfileType[]; reports?: ReportType[]; tools?: ToolType[] };
+
+export type ProfileType = {
 	userId: string;
 	userEmail?: string | null;
 	userName?: string | null;
 	userPassword?: string | null;
 	userImage?: string | null;
 	language?: string | null;
+	role?: string | null;
 };
 
-export type Report = {
+export type ReportType = {
 	id: string;
 	userId?: string;
 	createdAt: string;
@@ -20,7 +23,7 @@ export type Report = {
 	comments?: string;
 };
 
-export type Tool = {
+export type ToolType = {
 	id: string;
 	path: string;
 	name: string;

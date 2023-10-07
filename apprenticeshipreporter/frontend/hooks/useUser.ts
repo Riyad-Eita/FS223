@@ -1,3 +1,4 @@
+import { ProfileType } from "@/types";
 import useSWR from "swr";
 
 const fetcher = async () => {
