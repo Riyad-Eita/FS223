@@ -13,6 +13,7 @@ import {
 	SettingsIcon,
 	Trash,
 	Trash2,
+	User,
 	UserPlus,
 	Users,
 } from "lucide-react";
@@ -25,8 +26,8 @@ const SidebarSettings = (profile: ProfileType) => {
 	const { onOpen } = useModal();
 	const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false);
 
-	const isAdmin = profile.role === "ADMIN";
-	const isModerator = isAdmin || profile.role === "MODERATOR";
+	const isAdmin = profile.role?.toString() === "ADMIN";
+	const isModerator = isAdmin || profile.role?.toString() === "MODERATOR";
 
 	useEffect(() => {}, [dropdownMenuOpen]);
 
@@ -49,7 +50,7 @@ const SidebarSettings = (profile: ProfileType) => {
 			</ActionTooltip>
 			<DropdownMenuContent
 				onMouseLeave={handleClose}
-				className="w-56 text-xs font-medium text-black dark:text-neutral-300 space-y-[2px]"
+				className="w-56 text-xs font-medium text-black dark:text-neutral-300 bg-[--card]"
 			>
 				{isModerator && (
 					<DropdownMenuItem
@@ -63,33 +64,33 @@ const SidebarSettings = (profile: ProfileType) => {
 
 				{isAdmin && (
 					<DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
-						Server Settings
-						<Settings className="h-4 w-4 ml-auto" />
-					</DropdownMenuItem>
-				)}
-
-				{isAdmin && (
-					<DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
 						Manage Members
 						<Users className="h-4 w-4 ml-auto" />
 					</DropdownMenuItem>
 				)}
 
+				{
+					<DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
+						Account
+						<User className="h-4 w-4 ml-auto" />
+					</DropdownMenuItem>
+				}
+
 				{isModerator && (
 					<DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
-						Create Channel
+						Create Ticket
 						<PlusCircle className="h-4 w-4 ml-auto" />
 					</DropdownMenuItem>
 				)}
 				{isAdmin && <DropdownMenuSeparator />}
 				{(isAdmin && (
 					<DropdownMenuItem className="text-rose-500 px-3 py-2 text-sm cursor-pointer">
-						Delete Server
+						Delete Report
 						<Trash className="h-4 w-4 ml-auto" />
 					</DropdownMenuItem>
 				)) || (
 					<DropdownMenuItem className="text-rose-500 px-3 py-2 text-sm cursor-pointer">
-						Leave Server
+						Leave Room
 						<LogOut className="h-4 w-4 ml-auto" />
 					</DropdownMenuItem>
 				)}

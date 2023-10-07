@@ -8,7 +8,7 @@ export const currentProfile = async () => {
 
 	// Dummy auth function
 	const { userId } = { userId: "ba63c212-3c13-4a9c-96e9-54a160e00dc7" };
-	// const { userId } = { userId: null };
+	// const { userId } = { userId: uuid4() };
 
 	if (!userId) {
 		return null;

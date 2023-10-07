@@ -13,7 +13,7 @@
 		--background: #ffffff;
 		--foreground: #09090b;
 
-		--card: #000000;
+		--card: #ffffffe0;
 		--card-foreground: #09090b;
 
 		--popover: #000000;
@@ -45,7 +45,7 @@
 		--background: 240 10% 3.9%;
 		--foreground: 0 0% 98%;
 
-		--card: 240 10% 3.9%;
+		--card: #09090be0;
 		--card-foreground: 0 0% 98%;
 
 		--popover: 240 10% 3.9%;
@@ -78,5 +78,19 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+
+	h1 {
+		@apply text-4xl font-bold mb-4;
+	}
+	h2 {
+		@apply text-3xl font-bold mb-2;
+	}
+	h3 {
+		@apply text-2xl font-bold mb-1;
+	}
+
+	p {
+		@apply text-base;
 	}
 }

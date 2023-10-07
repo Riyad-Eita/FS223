@@ -7,6 +7,7 @@ import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import ForbiddenPage from "@/components/errors/forbidden-page";
 import { useUser } from "@/hooks/useUser";
 import { redirect } from "next/navigation";
+import { ProfileType } from "@/types";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	const { user, isLoading, isError } = useUser();
@@ -16,7 +17,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	}
 
 	// If user is null then popup login modal and set user
-	if (user?.userId === undefined) {
+	if ((user as ProfileType)?.userId === undefined) {
 		return (
 			<div className="h-screen w-screen flex flex-col justify-center items-center">
 				{(isLoading && (

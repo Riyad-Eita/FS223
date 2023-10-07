@@ -1,4 +1,8 @@
-export type DbType = { profiles?: ProfileType[]; reports?: ReportType[]; tools?: ToolType[] };
+export enum Roles {
+	"ADMIN",
+	"MODERATOR",
+	"GUEST",
+}
 
 export type ProfileType = {
 	userId: string;
@@ -28,4 +32,10 @@ export type ToolType = {
 	path: string;
 	name: string;
 	icon?: string;
+};
+
+export type DbType = {
+	profiles?: ProfileType[];
+	reports?: ReportType[];
+	tools?: ToolType[];
 };
