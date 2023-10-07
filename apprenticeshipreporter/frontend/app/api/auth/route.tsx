@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET() {
 	try {
 		const profile = await currentProfile();
 
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 			return new NextResponse("Unauthorized", { status: 401 });
 		}
 
-		const body = { profile, uid: uuid4() };
+		const body = { profile };
 
 		return NextResponse.json(body);
 	} catch (error) {

@@ -1,7 +1,9 @@
+import { v4 as uuid4 } from "uuid";
+
 declare global {
 	var mysql:
 		| {
-				profile: {
+				profile?: {
 					userId: string;
 					userEmail?: string | null; // TODO: remove this?
 					userName?: string | null; // TODO: remove this?
@@ -30,9 +32,9 @@ declare global {
 		| undefined;
 }
 
-export const db = globalThis.mysql || {
+export const db = {
 	profile: {
-		userId: "1",
+		userId:  uuid4(),
 		userEmail: "userEmail",
 		userName: "userName",
 		userImage: "userImage",
@@ -78,6 +80,6 @@ export const db = globalThis.mysql || {
 		{ id: "2", name: "Report Overview", path: "reports", icon: "Dashboard" },
 		{ id: "3", name: "PDF Generator", path: "pdf-gen", icon: "File" },
 	],
-};
+} ||  globalThis.mysql  ;
 
 if (process.env.NODE_ENV !== "production") globalThis.mysql = db;

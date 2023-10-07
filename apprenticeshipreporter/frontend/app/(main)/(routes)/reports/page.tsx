@@ -1,5 +1,9 @@
 const ReportsOverview = () => {
-  return ( <>Reports</> );
-}
- 
+	return (
+		<>
+			<h2>Reports</h2>
+		</>
+	);
+};
+
 export default ReportsOverview;

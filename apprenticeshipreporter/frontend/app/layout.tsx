@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "sonner";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
 					storageKey="theme"
 				>
 					{/* <ModalProvider /> */}
+					<Toaster richColors />
 					{children}
 				</ThemeProvider>
 			</body>

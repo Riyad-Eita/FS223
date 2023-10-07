@@ -1,15 +1,23 @@
 import { db } from "@/lib/db";
+import { v4 as uuid4 } from "uuid";
 
 export const currentProfile = async () => {
-	// TODO
-	const { userId } = { userId: 1 }; //auth();
+	// TODO Get user here
+
+	// const { user } = auth();
+
+	// Dummy auth function
+	const { userId } = { userId: uuid4() };
 
 	if (!userId) {
 		return null;
-		throw new Error("You must be signed in to view the current profile.");
 	}
 
-	const profile = await db.profile;
+	const profile = db?.profile;
+
+	if (!profile) {
+		return null;
+	}
 
 	return profile;
 };

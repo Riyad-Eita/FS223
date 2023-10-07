@@ -22,9 +22,14 @@ export const NavigationSidebar = () => {
 
 	return (
 		<div className="pt-4 space-y-4 flex flex-col items-center h-full w-full text-primary bg-slate-300 dark:bg-[#1E1F22] py-3">
-			<Button className="mt-2 mb-2 bg-transparent border-0" variant="outline" size="icon">
+			<Button
+				className="mt-2 mb-2 max-h-[48px] max-w-[48px] bg-transparent border-0"
+				variant="outline"
+				size="icon"
+			>
 				<Image
 					src={logo}
+					priority={true}
 					alt="Apprenticeship Reporter Logo"
 					height="48"
 					width="48"

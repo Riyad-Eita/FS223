@@ -1,46 +1,50 @@
-"use client"
+"use client";
 
-import { db } from "@/lib/db"
+import { db } from "@/lib/db";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
+import ForbiddenPage from "@/components/errors/forbidden-page";
+
+import useSWR from "swr";
+
+const fetcher = async () => {
+	const response = await fetch("/api/auth");
+	const data = await response.json();
+	return data;
+};
+
+const useUser = () => {
+	const { data, isLoading, error } = useSWR("auth", fetcher, {
+		refreshInterval: 1000,
+	});
+	return { user: data, isLoading, isError: error };
+};
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-	const [user, setUser] = useState<typeof db>();
-	const [isLoading, setIsLoading] = useState(false);
+	const { user, isLoading, isError } = useUser();
 
-	// Get user from api
-	const checkUser = async () => {
-		setIsLoading(true);
-		const rep = await fetch("/api/auth");
-		const res = await rep.json();
-		setTimeout(() => {
-			setUser(res);
-			setIsLoading(false);
-		}, 0);
-	};
-
-	useEffect(() => {
-		checkUser();
-	}, []);
+	if (isError) {
+		return <ForbiddenPage />;
+	}
 
 	// If user is null then popup login modal and set user
-	if (!user?.profile.userId) {
-		return isLoading ? (
-			<>
-				<Loader2 className="h-4 w-4" />
-			</>
-		) : (
-			<>Unauthorized</>
+	if (user?.profile?.userId === undefined) {
+		return (
+			<div className="h-screen w-screen flex flex-col justify-center items-center">
+				{(isLoading && (
+					<Loader2 className="animate-spin h-16 w-16 opacity-70" />
+				)) || <></>}
+			</div>
 		);
 	}
 
 	return (
 		<div className="min-h-screen">
 			<div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
-        <NavigationSidebar />
-      </div>
-			<div className="md:pl-[72px] h-full">{children}</div>
+				<NavigationSidebar />
+			</div>
+			<div className="md:pl-[72px] h-full ml-6 p-6">{children}</div>
 		</div>
 	);
 };
