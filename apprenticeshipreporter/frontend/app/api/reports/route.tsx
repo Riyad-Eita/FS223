@@ -13,7 +13,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     const reports = db.reports
 
-		const body = { profile, reports };
+		const body = { reports };
 
 		return NextResponse.json(body);
 	} catch (error) {

@@ -99,7 +99,7 @@ export const SignInModal = () => {
 
 	return (
 		<Dialog open={isModalOpen} onOpenChange={handleClose}>
-			<DialogContent className="bg-stone-700/10 text-[--card] p-0 overflow-hidden">
+			<DialogContent className="bg-stone-700/10 text-[--card] dark:text-[#fff] p-0 overflow-hidden">
 				<DialogHeader className="pt-8 px-6">
 					<DialogTitle className="text-2xl text-center font-bold">
 						Welcome back!

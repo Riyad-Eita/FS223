@@ -5,19 +5,19 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import ForbiddenPage from "@/components/errors/forbidden-page";
-import { useUser } from "@/hooks/useUser";
+import { useUser } from "@/hooks/use-actions";
 import { redirect } from "next/navigation";
-import { ProfileType } from "@/types";
+import { UserProfileType } from "@/types";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-	const { user, isLoading, isError } = useUser();
+	const { data: user, isLoading, isError } = useUser();
 
 	if (isError) {
 		return <ForbiddenPage />;
 	}
 
 	// If user is null then popup login modal and set user
-	if ((user as ProfileType)?.userId === undefined) {
+	if ((user as UserProfileType)?.userId === undefined) {
 		return (
 			<div className="h-screen w-screen flex flex-col justify-center items-center">
 				{(isLoading && (

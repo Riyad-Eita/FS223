@@ -1,88 +1,60 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Loader2, LogOutIcon } from "lucide-react";
+import { LogOutIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
-import { ProfileType } from "@/types";
-import { currentProfile } from "@/lib/current-profile";
-import { useUser } from "@/hooks/useUser";
+import { UserProfileType, ReportType } from "@/types";
+import { useUser, useReports } from "@/hooks/use-actions";
 import React from "react";
+import ReportsOverview from "@/components/reports/reports-overview";
 
 export default function Home() {
 	const params = useParams();
 	const router = useRouter();
-	const [profile, setProfile] = useState<ProfileType | null>(null);
+	const [profile, setProfile] = useState<UserProfileType | null>(null);
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
 	const user = useUser();
+	const reports = useReports();
 
 	useEffect(() => {
 		if (profile === null) {
-			setProfile(user.user);
+			setProfile(user.data);
 		}
-	}, [profile, user.user]);
+	}, [profile, user.data, reports.data]);
 
 	return (
-		<main className="min-h-full w-full">
-			<div className="h-full w-full flex flex-col">
-				<h1>Apprenticeship Reporter</h1>
-				<h2>User</h2>
-				<p>{profile?.userName?.toString().toLocaleLowerCase()}</p>
-				<p>{profile?.userEmail?.toString().toLocaleLowerCase()}</p>
-				<p>{profile?.role?.toString().toLocaleLowerCase()}</p>
-
-				<h2>Calendar</h2>
-				<div className="w-fit  pt-6 pb-6">
-					<Calendar
-						mode="single"
-						selected={date}
-						onSelect={setDate}
-						className="rounded-md border"
-					/>
-				</div>
-				<h2>Reports</h2>
-				<p>Coming soon...</p>
-
-				<h2>Profiles</h2>
-				<p>Coming soon...</p>
-
-				<div className="w-fit  pt-6 pb-6">
-					<Calendar
-						mode="single"
-						selected={date}
-						onSelect={setDate}
-						className="rounded-md border"
-					/>
+		<main className="h-full w-full">
+			<h1 className="text-ellipsis ">Apprenticeship Reporter</h1>
+			<div className="h-full w-full grid flex-col flex-wrap md:grid-cols-2">
+				<div className="p-4">
+					<h2>User</h2>
+					<p>{profile?.userName?.toString().toLocaleLowerCase()}</p>
+					<p>{profile?.userEmail?.toString().toLocaleLowerCase()}</p>
+					<p>{profile?.role?.toString().toLocaleLowerCase()}</p>
 				</div>
 
-				<div className="w-fit  pt-6 pb-6">
-					<Calendar
-						mode="single"
-						selected={date}
-						onSelect={setDate}
-						className="rounded-md border"
-					/>
+				<div className="p-4">
+					<h2>Calendar</h2>
+					<div className="w-fit pt-6 pb-6">
+						<Calendar
+							mode="single"
+							selected={date}
+							onSelect={setDate}
+							className="rounded-md border"
+						/>
+					</div>
 				</div>
-				<div className="w-fit  pt-6 pb-6">
-					<Calendar
-						mode="single"
-						selected={date}
-						onSelect={setDate}
-						className="rounded-md border"
-					/>
+
+				<div className="p-4 truncate ...">
+					<ReportsOverview reports={reports?.data} />
 				</div>
-				<div className="w-fit  pt-6 pb-6">
-					<Calendar
-						mode="single"
-						selected={date}
-						onSelect={setDate}
-						className="rounded-md border"
-					/>
+
+				<div className="p-4">
+					<h2>Profiles</h2>
+					<p>Coming soon...</p>
 				</div>
 
 				<Button
