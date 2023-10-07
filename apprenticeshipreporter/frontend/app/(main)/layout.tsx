@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import ForbiddenPage from "@/components/errors/forbidden-page";
 import { useUser } from "@/hooks/useUser";
+import { redirect } from "next/navigation";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	const { user, isLoading, isError } = useUser();

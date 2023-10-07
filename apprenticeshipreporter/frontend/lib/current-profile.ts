@@ -7,13 +7,16 @@ export const currentProfile = async () => {
 	// const { user } = auth();
 
 	// Dummy auth function
-	const { userId } = { userId: uuid4() };
+	// const { userId } = { userId: "95ae534a-cfab-4eb2-a41f-f7289a63af78" };
+	const { userId } = { userId: null };
 
 	if (!userId) {
 		return null;
 	}
 
-	const profile = db?.profile;
+	const profile = db.profiles.find((item) => {
+		return item.userId === userId ? item : null;
+	});
 
 	if (!profile) {
 		return null;

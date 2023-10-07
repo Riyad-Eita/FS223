@@ -1,0 +1,76 @@
+{
+	"profiles": [
+		{
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"userEmail": "userEmail1",
+			"userName": "userName1",
+			"userPassword": "1234",
+			"userImage": "userImage1",
+			"language": "de"
+		},
+		{
+			"userId": "b2238ebc-0452-4b54-9eb5-3ddb6ab6f0bb",
+			"userEmail": "userEmail2",
+			"userName": "userName2",
+			"userPassword": "1234",
+			"userImage": "userImage2",
+			"language": "en"
+		},
+		{
+			"userId": "95ae534a-cfab-4eb2-a41f-f7289a63af78",
+			"userEmail": "user",
+			"userName": "userName2",
+			"userPassword": "1234",
+			"userImage": "userImage2",
+			"language": "de"
+		}
+	],
+	"reports": [
+		{
+			"id": "KW35",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW35",
+			"accomplishments": "accomplishments",
+			"plan": "plan",
+			"problems": "problems",
+			"comments": "comments"
+		},
+		{
+			"id": "KW36",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW36",
+			"accomplishments": "accomplishments",
+			"plan": "plan",
+			"problems": "problems",
+			"comments": "comments"
+		},
+		{
+			"id": "KW37",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW37",
+			"accomplishments": "accomplishments",
+			"plan": "plan",
+			"problems": "problems",
+			"comments": "comments"
+		}
+	],
+	"tools": [
+		{ "id": "1", "name": "Home", "path": "", "icon": "Home" },
+		{
+			"id": "2",
+			"name": "Report Overview",
+			"path": "reports",
+			"icon": "Dashboard"
+		},
+		{ "id": "3", "name": "PDF Generator", "path": "pdf-gen", "icon": "File" }
+	]
+}

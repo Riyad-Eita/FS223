@@ -1,34 +1,39 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ActionTooltip } from "@/components/action-tooltip";
+import { Button } from "@/components/ui/button";
+import { PenBox } from "lucide-react";
+import { useModal } from "@/hooks/use-modal-store";
 
 const LoginPage = () => {
+	const { onOpen } = useModal();
+	const params = useParams();
+	const router = useRouter();
 	const [loggedIn, setLoggedIn] = useState(false);
 
 	useEffect(() => {
-		if (!loggedIn) {
+		if (loggedIn) {
+			router.push(`/`);
+		} else {
 			login();
 		}
-	}, [loggedIn]);
+	}, [loggedIn, router]);
 
 	const login = () => {
-		toast.success("Logged in successfully", {
-			position: toast.POSITION.TOP_CENTER,
-			autoClose: 2000,
-			hideProgressBar: true,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-		});
+		onOpen("login");
 	};
 
 	return (
-		<div>
-			<h2>Login Page</h2>
-			<ToastContainer />
+		<div className="h-screen w-screen flex flex-col justify-top items-start p-6">
+			<ActionTooltip side="right" align="center" label="Login">
+				<Button className="h-16 w-16" onClick={login}>
+					<PenBox />
+				</Button>
+			</ActionTooltip>
 		</div>
 	);
 };

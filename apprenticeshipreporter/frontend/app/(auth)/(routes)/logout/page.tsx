@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LogoutPage = () => {
@@ -10,6 +10,7 @@ const LogoutPage = () => {
 	useEffect(() => {
 		if (!loggedOut) {
 			logout();
+			setLoggedOut(true)
 		}
 	}, [loggedOut]);
 
@@ -28,7 +29,6 @@ const LogoutPage = () => {
 	return (
 		<div>
 			<h2>Logout Page</h2>
-			<ToastContainer />
 		</div>
 	);
 };

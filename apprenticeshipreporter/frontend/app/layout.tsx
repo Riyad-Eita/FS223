@@ -3,8 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { Toaster } from "sonner";
-
+import { ToastContainer } from "react-toastify";
+import { ModalProvider } from "@/components/providers/modal-provider";
 const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -31,8 +31,8 @@ export default function RootLayout({
 					enableSystem={false}
 					storageKey="theme"
 				>
-					{/* <ModalProvider /> */}
-					<Toaster richColors />
+					<ModalProvider />
+					<ToastContainer theme="dark" />
 					{children}
 				</ThemeProvider>
 			</body>
