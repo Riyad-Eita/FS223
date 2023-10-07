@@ -1,0 +1,46 @@
+// Enum for user roles
+export enum UserRole {
+	ADMIN = "ADMIN",
+	MODERATOR = "MODERATOR",
+	GUEST = "GUEST",
+}
+
+// User profile type
+export type UserProfileType = {
+	userId: string;
+	userEmail?: string | null;
+	userName?: string | null;
+	userPassword?: string | null;
+	userImage?: string | null;
+	language?: string | null;
+	role?: UserRole | null; // Use the UserRole enum for role
+};
+
+// Report type
+export type ReportType = {
+	id: string;
+	userId?: string | null; // Nullable to allow for anonymous reports
+	createdAt: string;
+	updatedAt?: string | null;
+	deletedAt?: string | null;
+	week: string;
+	accomplishments?: string | null;
+	plan?: string | null;
+	problems?: string | null;
+	comments?: string | null;
+};
+
+// Tool type
+export type ToolType = {
+	id: string;
+	path: string;
+	name: string;
+	icon?: string | null;
+};
+
+// Database type
+export type DatabaseType = {
+	profiles?: UserProfileType[];
+	reports?: ReportType[];
+	tools?: ToolType[];
+};

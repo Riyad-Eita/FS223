@@ -1,0 +1,115 @@
+{
+	"profiles": [
+		{
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"userEmail": "admin@admin.de",
+			"userName": "Administrator",
+			"userPassword": "admin",
+			"userImage": "userImage",
+			"language": "de",
+			"role": "ADMIN"
+		},
+		{
+			"userId": "b2238ebc-0452-4b54-9eb5-3ddb6ab6f0bb",
+			"userEmail": "moderator@moderator.com",
+			"userName": "Moderator",
+			"userPassword": "moderator",
+			"userImage": "userImage",
+			"language": "en",
+			"role": "MODERATOR"
+		},
+		{
+			"userId": "95ae534a-cfab-4eb2-a41f-f7289a63af78",
+			"userEmail": "user@user.com",
+			"userName": "User",
+			"userPassword": "user",
+			"userImage": "userImage",
+			"language": "en",
+			"role": "USER"
+		}
+	],
+	"reports": [
+		{
+			"id": "0e1895d5-1ed4-4c48-a40e-5e9cbefdf3f7",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW35",
+			"accomplishments": "accomplishments",
+			"plan": "plan",
+			"problems": "problems",
+			"comments": "comments"
+		},
+		{
+			"id": "e1c71f97-293a-4f43-8d21-131d663a11dd",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW36",
+			"accomplishments": "accomplishments",
+			"plan": "plan",
+			"problems": "problems",
+			"comments": "comments"
+		},
+		{
+			"id": "df6f8a5f-891e-4e86-aa3f-eef2c04a8702",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW37",
+			"accomplishments": "accomplishments",
+			"plan": "plan",
+			"problems": "problems",
+			"comments": "comments"
+		},
+		{
+			"id": "042f06e2-44b9-4460-84f3-678873b89ac5",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW38",
+			"accomplishments": "Completed project XYZ ahead of schedule.",
+			"plan": "Plan to start working on project ABC next week.",
+			"problems": "Faced technical issues during project XYZ, but resolved them.",
+			"comments": "Overall, a productive week with some challenges."
+		},
+		{
+			"id": "52f2d1aa-3034-432d-9821-3fbba8004872",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW39",
+			"accomplishments": "Met with clients and finalized project scope.",
+			"plan": "Plan to allocate resources for project DEF.",
+			"problems": "Issues with project scope clarification, need further discussion.",
+			"comments": "A week focused on client engagement and project planning."
+		},
+		{
+			"id": "7f0a6f6a-87da-41c0-875c-9d67a9974a8c",
+			"userId": "ba63c212-3c13-4a9c-96e9-54a160e00dc7",
+			"createdAt": "2021-01-01",
+			"updatedAt": "2021-01-01",
+			"deletedAt": "2021-01-01",
+			"week": "KW40",
+			"accomplishments": "Successfully delivered project GHI on time.",
+			"plan": "Plan to review and optimize project management processes.",
+			"problems": "Resource constraints impacted project GHI, need to address this.",
+			"comments": "A challenging week, but project GHI was a success."
+		}
+	],
+	"tools": [
+		{ "id": "1", "name": "Home", "path": "", "icon": "Home" },
+		{
+			"id": "2",
+			"name": "Report Overview",
+			"path": "reports",
+			"icon": "Dashboard"
+		},
+		{ "id": "3", "name": "PDF Generator", "path": "pdf-gen", "icon": "File" }
+	]
+}
