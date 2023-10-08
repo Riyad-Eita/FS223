@@ -7,34 +7,36 @@ export enum UserRole {
 
 // User profile type
 export type UserProfileType = {
-	userId: string;
+	userId?: string;
 	userEmail?: string | null;
 	userName?: string | null;
 	userPassword?: string | null;
 	userImage?: string | null;
 	language?: string | null;
-	role?: UserRole | null; // Use the UserRole enum for role
-};
+	role?: string | null; // Use the UserRole enum for role
+} | null;
 
 // Report type
 export type ReportType = {
-	id: string;
+	id?: string;
+	key?: number;
 	userId?: string | null; // Nullable to allow for anonymous reports
-	createdAt: string;
+	createdAt?: string;
 	updatedAt?: string | null;
 	deletedAt?: string | null;
-	week: string;
+	week?: string;
+	status?: "pending" | "processing" | "success" | "failed";
 	accomplishments?: string | null;
 	plan?: string | null;
 	problems?: string | null;
 	comments?: string | null;
-};
+} | null;
 
 // Tool type
 export type ToolType = {
-	id: string;
-	path: string;
-	name: string;
+	id?: string;
+	path?: string;
+	name?: string;
 	icon?: string | null;
 };
 
@@ -43,4 +45,4 @@ export type DatabaseType = {
 	profiles?: UserProfileType[];
 	reports?: ReportType[];
 	tools?: ToolType[];
-};
+} | null;

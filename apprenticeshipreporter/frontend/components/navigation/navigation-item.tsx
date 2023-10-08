@@ -33,7 +33,7 @@ export const NavigationItem = ({
 	};
 
 	return (
-		<ActionTooltip key={id} side="right" align="center" label={name}>
+		<ActionTooltip key={id} side="right" align="center" label={name || ""}>
 			<button onClick={onClick} className="group relative flex items-center">
 				<div
 					className={cn(
@@ -54,7 +54,7 @@ export const NavigationItem = ({
 						</div>
 					) : (
 						<div className="flex items-center justify-center w-full h-full text-2l font-bold">
-							{name.toLocaleUpperCase().slice(0, 4)}
+							{name?.toLocaleUpperCase().slice(0, 4)}
 						</div>
 					)}
 				</div>

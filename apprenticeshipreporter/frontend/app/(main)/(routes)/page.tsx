@@ -31,9 +31,13 @@ export default function Home() {
 			<div className="h-full w-full grid flex-col flex-wrap md:grid-cols-2">
 				<div className="p-4">
 					<h2>User</h2>
-					<p>{profile?.userName?.toString().toLocaleLowerCase()}</p>
-					<p>{profile?.userEmail?.toString().toLocaleLowerCase()}</p>
-					<p>{profile?.role?.toString().toLocaleLowerCase()}</p>
+					{Object.entries(user.data)?.map((element: any, key: number) => (
+						<div key={key} className="flex">
+							<p className="w-36">{element[0].toString().toLocaleUpperCase()}</p>
+							<p className=" mr-2">|</p>
+							<p className="">{element[1]}</p>
+						</div>
+					))}
 				</div>
 
 				<div className="p-4">
@@ -48,9 +52,9 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="p-4 truncate ...">
+				{/* <div className="p-4 truncate ...">
 					<ReportsOverview reports={reports?.data} />
-				</div>
+				</div> */}
 
 				<div className="p-4">
 					<h2>Profiles</h2>

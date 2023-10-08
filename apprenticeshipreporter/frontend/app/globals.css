@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#redb {
+.redb {
 	border: solid 1px red;
 }
 

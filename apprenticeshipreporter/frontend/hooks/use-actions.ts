@@ -11,34 +11,20 @@ export const useUser = () => {
 };
 
 export const useReports = () => {
-	const {
-		data,
-		isLoading,
-		error,
-	}: { data: ReportType[]; isLoading: boolean; error: any } = useSWR(
-		"reports",
-		async () => {
-			const response = await fetch("/api/reports");
-			const data = await response.json();
-			return data.reports;
-		}
-	);
+	const { data, isLoading, error } = useSWR("reports", async () => {
+		const response = await fetch("/api/reports");
+		const data = await response.json();
+		return data.reports;
+	});
 	return { data, isLoading, isError: error };
 };
 
 export const useProfiles = () => {
-	const {
-		data,
-		isLoading,
-		error,
-	}: { data: UserProfileType[]; isLoading: boolean; error: any } = useSWR(
-		"profiles",
-		async () => {
-			const response = await fetch("/api/profiles");
-			const data = await response.json();
-			return data.profiles;
-		}
-	);
+	const { data, isLoading, error } = useSWR("profiles", async () => {
+		const response = await fetch("/api/profiles");
+		const data = await response.json();
+		return data.profiles;
+	});
 	return { data, isLoading, isError: error };
 };
 
