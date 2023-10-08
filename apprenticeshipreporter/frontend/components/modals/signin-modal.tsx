@@ -69,7 +69,6 @@ export const SignInModal = () => {
 					draggable: true,
 					progress: undefined,
 				});
-				router.push(`/`);
 				handleClose();
 			} else {
 				toast.error("Login failed", {
@@ -95,11 +94,12 @@ export const SignInModal = () => {
 	const handleClose = () => {
 		form.reset();
 		onClose();
+		router.push(`/`);
 	};
 
 	return (
 		<Dialog open={isModalOpen} onOpenChange={handleClose}>
-			<DialogContent className="bg-stone-700/10 text-[--card] dark:text-[#fff] p-0 overflow-hidden">
+			<DialogContent className="bg-stone-700/10 text-[--card] dark:text-[--card] p-0 overflow-hidden">
 				<DialogHeader className="pt-8 px-6">
 					<DialogTitle className="text-2xl text-center font-bold">
 						Welcome back!
@@ -122,7 +122,7 @@ export const SignInModal = () => {
 										<FormControl>
 											<Input
 												disabled={isLoading}
-												className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
+												className="bg-[--card]/20 border-0 focus-visible:ring-1 text-[--card] focus-visible:ring-offset-0"
 												placeholder="Enter Your Email"
 												{...field}
 											/>
@@ -145,7 +145,7 @@ export const SignInModal = () => {
 											<Input
 												disabled={isLoading}
 												type="password"
-												className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
+												className="bg-[--card]/20 border-0 focus-visible:ring-1 text-[--card] focus-visible:ring-offset-0"
 												placeholder="Enter Password"
 												{...field}
 											/>
