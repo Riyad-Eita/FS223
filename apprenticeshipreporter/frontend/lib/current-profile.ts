@@ -15,7 +15,7 @@ export const currentProfile = async () => {
 		return null;
 	}
 
-	debug(userId.toString());
+	debug(userId);
 
 	const profile = db.profiles.find((item) => {
 		debug(item.userId);

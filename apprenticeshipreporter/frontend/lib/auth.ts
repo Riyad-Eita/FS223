@@ -20,7 +20,7 @@ export const login = async ({ name, pass }: LoginProps) => {
 
 export const authenticateUser = async () => {
 	try {
-		const userParams = { name: "Moderator", pass: "moderator" };
+		const userParams = { name: "Administrator", pass: "admin" };
 
 		const uid =
 			db.profiles.find((profile) => {

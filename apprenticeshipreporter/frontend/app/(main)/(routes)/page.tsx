@@ -14,16 +14,20 @@ import ReportsOverview from "@/components/reports/reports-overview";
 export default function Home() {
 	const params = useParams();
 	const router = useRouter();
-	const [profile, setProfile] = useState<UserProfileType | null>(null);
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
 	const user = useUser();
-	const reports = useReports();
+	// const reports = useReports();
 
-	useEffect(() => {
-		if (profile === null) {
-			setProfile(user.data);
-		}
-	}, [profile, user.data, reports.data]);
+	const userHTMLData = (obj: any) => {
+		if (!obj) return null;
+		return Object.entries(obj)?.map((element: any, key: number) => (
+			<div key={key} className="flex">
+				<p className="w-36">{element[0].toString().toLocaleUpperCase()}</p>
+				<p className=" mr-2">|</p>
+				<p className="">{element[1]}</p>
+			</div>
+		));
+	};
 
 	return (
 		<main className="h-full w-full">
@@ -31,13 +35,7 @@ export default function Home() {
 			<div className="h-full w-full grid flex-col flex-wrap md:grid-cols-2">
 				<div className="p-4">
 					<h2>User</h2>
-					{Object.entries(user.data)?.map((element: any, key: number) => (
-						<div key={key} className="flex">
-							<p className="w-36">{element[0].toString().toLocaleUpperCase()}</p>
-							<p className=" mr-2">|</p>
-							<p className="">{element[1]}</p>
-						</div>
-					))}
+					{userHTMLData(user?.data)}
 				</div>
 
 				<div className="p-4">

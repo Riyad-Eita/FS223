@@ -1,6 +1,3 @@
-import { type } from "os";
-import { v4 as uuid4 } from "uuid";
-
 import json from "@/db.json";
 import { UserProfileType, ToolType, ReportType } from "@/types";
 

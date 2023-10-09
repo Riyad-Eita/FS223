@@ -17,9 +17,9 @@ type NavigationSidebarProps = {
 };
 
 export const NavigationSidebar = ({ profile, db }: NavigationSidebarProps) => {
-	if (!profile) {
+	/* if (!profile) {
 		return redirect("/");
-	}
+	} */
 
 	enum ToolIcon {
 		Home = "Home",
