@@ -18,14 +18,14 @@ export type UserProfileType = {
 
 // Report type
 export type ReportType = {
-	id?: string;
-	key?: number;
+	id?: number;
+	key?: string;
 	userId?: string | null; // Nullable to allow for anonymous reports
 	createdAt?: string;
 	updatedAt?: string | null;
 	deletedAt?: string | null;
 	week?: string;
-	status?: "pending" | "processing" | "success" | "failed";
+	status?: string | null;
 	accomplishments?: string | null;
 	plan?: string | null;
 	problems?: string | null;

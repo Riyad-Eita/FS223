@@ -29,6 +29,7 @@ import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { toast } from "react-toastify";
 import { Loader2 } from "lucide-react";
+import { login } from "@/lib/auth";
 
 const formSchema = z.object({
 	name: z.string().min(1, {
@@ -58,8 +59,8 @@ export const SignInModal = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			const response = await axios.post("/api/auth/signin", values);
-			if (response.data) {
+			const response = await login(values);
+			if (response?.data !== null) {
 				toast.success("Login successful", {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,

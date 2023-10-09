@@ -1,20 +1,18 @@
 import { db } from "@/lib/db";
-import { v4 as uuid4 } from "uuid";
+import authenticateUser from "./auth";
+import { type } from "os";
+
 
 export const currentProfile = async () => {
-	// TODO Get user here
+	const userId = await authenticateUser();
 
-	// const { user } = auth();
-
-	// Dummy auth function
-	const { userId } = { userId: "ba63c212-3c13-4a9c-96e9-54a160e00dc7" };
-	// const { userId } = { userId: uuid4() };
+	console.log(userId)
 
 	if (!userId) {
 		return null;
 	}
 
-	const profile = db.profiles.find((item) => {
+	const profile = await db.profiles.find((item) => {
 		return item.userId === userId;
 	});
 

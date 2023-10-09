@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 
 import { setCookie } from "nookies";
+import { profile } from "console";
 
 export async function POST(req: NextRequest) {
 	try {
@@ -27,14 +28,14 @@ export async function POST(req: NextRequest) {
 				return null;
 			}) || null;
 
-		if (!body) return NextResponse.json(false);
+		if (!body) return NextResponse.json(null);
 		setCookie(
 			{ res: NextResponse },
 			"appreticeship-reporter",
 			token.value.toString(),
 			{ path: "/" }
 		);
-		return NextResponse.json(true);
+		return NextResponse.json(body.userId);
 	} catch (error) {
 		console.log("[SERVER_POST]", error);
 		return new NextResponse("Internal Error", { status: 500 });

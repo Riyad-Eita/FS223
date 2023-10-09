@@ -2,12 +2,12 @@ import { type } from "os";
 import { v4 as uuid4 } from "uuid";
 
 import json from "@/db.json";
-import { ProfileType, ToolType, ReportType } from "@/types";
+import { UserProfileType, ToolType, ReportType } from "@/types";
 
 declare global {
 	var mysql:
 		| {
-				profiles?: ProfileType[];
+				profiles?: UserProfileType[];
 				reports?: ReportType[];
 				tools?: ToolType[];
 		  }[]
