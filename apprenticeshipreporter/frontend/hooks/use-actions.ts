@@ -1,4 +1,3 @@
-import { ReportType, UserProfileType } from "@/types";
 import useSWR from "swr";
 
 export const useUser = () => {

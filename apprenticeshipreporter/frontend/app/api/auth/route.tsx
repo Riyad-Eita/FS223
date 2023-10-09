@@ -13,6 +13,7 @@ export async function GET() {
 		}
 
 		const user = db.profiles.find((item) => {
+
 			return item.userId === activeUser.userId ? item : null;
 		});
 

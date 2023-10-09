@@ -59,8 +59,8 @@ export const SignInModal = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			const response = await login(values);
-			if (response?.data !== null) {
+			const userId = await login(values);
+			if (userId !== null) {
 				toast.success("Login successful", {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
