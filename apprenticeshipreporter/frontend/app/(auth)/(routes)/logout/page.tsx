@@ -7,7 +7,7 @@ import useRedirectAfterSomeSeconds from "@/hooks/use-redirect-timer";
 import { LucideHeartHandshake } from "lucide-react";
 
 const LogoutPage = () => {
-	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 30);
+	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 10);
 
 	useEffect(() => {
 		logoutToast();
