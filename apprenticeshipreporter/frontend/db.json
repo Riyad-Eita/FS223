@@ -113,15 +113,5 @@
 			"problems": "Resource constraints impacted project GHI, need to address this.",
 			"comments": "A challenging week, but project GHI was a success."
 		}
-	],
-	"tools": [
-		{ "id": "1", "name": "Home", "path": "", "icon": "Home" },
-		{
-			"id": "2",
-			"name": "Report Overview",
-			"path": "reports",
-			"icon": "Dashboard"
-		},
-		{ "id": "3", "name": "PDF Generator", "path": "pdf-gen", "icon": "File" }
 	]
 }

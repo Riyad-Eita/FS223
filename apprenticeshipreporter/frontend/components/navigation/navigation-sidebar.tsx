@@ -34,14 +34,15 @@ export const NavigationSidebar = ({
 	}
 
 	const tools = [
-		{ id: "1", name: "Home", path: "", icon: ToolIcon.Home },
+		{ id: "1", name: "Home", path: "", icon: "Home" },
 		{
 			id: "2",
 			name: "Report Overview",
 			path: "reports",
-			icon: ToolIcon.Dashboard,
+			icon: "Dashboard",
 		},
-		{ id: "3", name: "PDF Generator", path: "pdf-gen", icon: ToolIcon.File },
+		{ id: "3", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "4", name: "Editor", path: "editor", icon: "Pen" },
 	];
 
 	const navItems = (

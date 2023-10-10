@@ -1,7 +1,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";
-import { File, Home, LayoutDashboard } from "lucide-react";
+import { File, Home, LayoutDashboard, Pen } from "lucide-react";
 import { ToolType } from "@/types";
 
 type NavigationItemProps = ToolType & { pos: string };
@@ -28,6 +28,8 @@ export const NavigationItem = ({
 				return <File />;
 			case "Dashboard":
 				return <LayoutDashboard />;
+			case "Pen":
+				return <Pen />;
 			default:
 				return;
 		}
