@@ -4,19 +4,16 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useRedirectAfterSomeSeconds from "@/hooks/use-redirect-timer";
+import { LucideHeartHandshake } from "lucide-react";
 
 const LogoutPage = () => {
-	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 5);
-	const [loggedOut, setLoggedOut] = useState(false);
+	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 10);
 
 	useEffect(() => {
-		if (!loggedOut) {
-			logout();
-			setLoggedOut(true);
-		}
-	}, [loggedOut]);
+		logoutToast();
+	}, []);
 
-	const logout = () => {
+	const logoutToast = () => {
 		toast.success("Logged out successfully", {
 			position: toast.POSITION.TOP_CENTER,
 			autoClose: 2000,
@@ -29,9 +26,11 @@ const LogoutPage = () => {
 	};
 
 	return (
-		<div>
-			<h2>Logout Page</h2>
-		</div>
+		<>
+			<LucideHeartHandshake className="h-24 w-24" />
+			<h2 className="m-4 text-opacity-80">Goodbye</h2>
+			<p className="text-muted-foreground">Redirect in {secondsRemaining} seconds</p>
+		</>
 	);
 };
 

@@ -11,6 +11,7 @@ import { UserProfileType } from "@/types";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	const { data: user, isLoading, isError } = useUser();
+	// const user = {}
 
 	if (isError) {
 		return <ForbiddenPage />;

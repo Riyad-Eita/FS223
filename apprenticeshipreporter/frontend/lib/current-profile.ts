@@ -1,26 +1,32 @@
 import { db } from "@/lib/db";
-import { v4 as uuid4 } from "uuid";
+import authenticateUser from "./auth";
+import { type } from "os";
+
+const debug = (message: string) => {
+	// console.log(`[DEBUG] ${message}`);
+};
 
 export const currentProfile = async () => {
-	// TODO Get user here
-
-	// const { user } = auth();
-
-	// Dummy auth function
-	const { userId } = { userId: "ba63c212-3c13-4a9c-96e9-54a160e00dc7" };
-	// const { userId } = { userId: uuid4() };
+	debug("Starting currentProfile function");
+	const userId = await authenticateUser();
 
 	if (!userId) {
+		debug("User not authenticated");
 		return null;
 	}
 
+	debug(userId);
+
 	const profile = db.profiles.find((item) => {
+		debug(item.userId);
 		return item.userId === userId;
 	});
 
 	if (!profile) {
+		debug("Profile not found");
 		return null;
 	}
 
+	debug("Profile found");
 	return profile;
 };

@@ -1,9 +1,10 @@
-interface ReportProps {
-	reportId: string;
-}
+"use client";
 
-const Report = ({ reportId }: ReportProps) => {
-	return <>Report: {reportId}</>;
+import { useParams } from "next/navigation";
+
+const ReportPage = () => {
+	const params = useParams();
+	return <>ReportId: {params.reportId}</>;
 };
 
-export default Report;
+export default ReportPage;

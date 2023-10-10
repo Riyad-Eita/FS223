@@ -29,6 +29,7 @@ import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { toast } from "react-toastify";
 import { Loader2 } from "lucide-react";
+import { login } from "@/lib/auth";
 
 const formSchema = z.object({
 	name: z.string().min(1, {
@@ -58,8 +59,8 @@ export const SignInModal = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			const response = await axios.post("/api/auth/signin", values);
-			if (response.data) {
+			const userId = await login(values);
+			if (userId !== null) {
 				toast.success("Login successful", {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
@@ -69,7 +70,6 @@ export const SignInModal = () => {
 					draggable: true,
 					progress: undefined,
 				});
-				router.push(`/`);
 				handleClose();
 			} else {
 				toast.error("Login failed", {
@@ -95,11 +95,12 @@ export const SignInModal = () => {
 	const handleClose = () => {
 		form.reset();
 		onClose();
+		router.push(`/`);
 	};
 
 	return (
 		<Dialog open={isModalOpen} onOpenChange={handleClose}>
-			<DialogContent className="bg-stone-700/10 text-[--card] dark:text-[#fff] p-0 overflow-hidden">
+			<DialogContent className="bg-stone-700/10 text-[--card] dark:text-[--card] p-0 overflow-hidden">
 				<DialogHeader className="pt-8 px-6">
 					<DialogTitle className="text-2xl text-center font-bold">
 						Welcome back!
@@ -122,7 +123,7 @@ export const SignInModal = () => {
 										<FormControl>
 											<Input
 												disabled={isLoading}
-												className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
+												className="bg-[--card]/20 border-0 focus-visible:ring-1 text-[--card] focus-visible:ring-offset-0"
 												placeholder="Enter Your Email"
 												{...field}
 											/>
@@ -145,7 +146,7 @@ export const SignInModal = () => {
 											<Input
 												disabled={isLoading}
 												type="password"
-												className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
+												className="bg-[--card]/20 border-0 focus-visible:ring-1 text-[--card] focus-visible:ring-offset-0"
 												placeholder="Enter Password"
 												{...field}
 											/>
