@@ -16,7 +16,7 @@ export default function Home() {
 	const router = useRouter();
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
 	const user = useUser();
-	// const reports = useReports();
+	const reports = useReports();
 
 	const userHTMLData = (obj: any) => {
 		if (!obj) return null;
@@ -50,9 +50,9 @@ export default function Home() {
 					</div>
 				</div>
 
-				{/* <div className="p-4 truncate ...">
+				 <div className="p-4 truncate ...">
 					<ReportsOverview reports={reports?.data} />
-				</div> */}
+				</div>
 
 				<div className="p-4">
 					<h2>Profiles</h2>
