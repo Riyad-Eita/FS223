@@ -15,7 +15,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 		TOP = "top",
 		LEFT = "left",
 	}
-	const sidebarPos: string = SidebarPos.TOP;
+	const sidebarPos: string = SidebarPos.LEFT;
 
 	const { data: user, isLoading, isError } = useUser();
 
