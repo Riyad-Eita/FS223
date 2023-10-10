@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 * {
-	/* border: solid 1px red; */
 	margin: 0;
 	padding: 0;
+}
+
+.redb {
+	border: solid 1px red;
 }
 
 @layer base {
@@ -43,7 +46,6 @@
 		--ring: 24.6 95% 53.1%;
 		--radius: 0.75rem;
 	}
-	
 
 	.dark {
 		--background: 20 14.3% 4.1%;
