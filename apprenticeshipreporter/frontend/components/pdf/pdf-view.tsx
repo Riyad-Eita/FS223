@@ -25,14 +25,16 @@ const PdfView = ({ ...user }: UserProfileType) => {
 	const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
 	return (
-		<div className="max-w-[40vw]">
+		<div
+			className="max-w-[40vw]"
+			style={{ filter: "drop-shadow(6px 4px 8px #00000F)" }}
+		>
 			<Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
 				{pdfBytes instanceof Uint8Array && (
 					<div className="inset-0 overflow-hidden h-full w-full min-w-24 min-h-24">
 						<Viewer
-							theme={"dark"}
 							fileUrl={pdfBytes}
-							plugins={[defaultLayoutPluginInstance]}
+							// plugins={[defaultLayoutPluginInstance]}
 						/>
 					</div>
 				)}
