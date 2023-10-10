@@ -29,7 +29,7 @@ import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { toast } from "react-toastify";
 import { Loader2 } from "lucide-react";
-import { login } from "@/lib/auth";
+import { signin } from "@/lib/auth";
 
 const formSchema = z.object({
 	name: z.string().min(1, {
@@ -59,7 +59,7 @@ export const SignInModal = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			const userId = await login(values);
+			const userId = await signin(values);
 			if (userId !== null) {
 				toast.success("Login successful", {
 					position: toast.POSITION.TOP_CENTER,
