@@ -41,8 +41,17 @@ export const NavigationSidebar = ({
 			path: "reports",
 			icon: "Dashboard",
 		},
-		{ id: "3", name: "PDF Generator", path: "pdf-gen", icon: "File" },
-		{ id: "4", name: "Editor", path: "editor", icon: "Pen" },
+		{ id: "3", name: "Editor", path: "editor", icon: "Pen" },
+		{ id: "4", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "5", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "6", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "7", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "8", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "8", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "8", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "8", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "8", name: "PDF Generator", path: "pdf-gen", icon: "File" },
+		{ id: "8", name: "PDF Generator", path: "pdf-gen", icon: "File" },
 	];
 
 	const navItems = (
@@ -100,9 +109,13 @@ export const NavigationSidebar = ({
 				/>
 			</Button>
 			{customSeperator}
-			<div className="flex flex-row flex-1 h-full w-full ">
-				{(pos === "left" && <ScrollArea>{navItems}</ScrollArea>) || navItems}
-			</div>
+
+			{(pos === "left" && (
+				<ScrollArea className="flex-1 h-full w-full">{navItems}</ScrollArea>
+			)) || (
+				<div className="flex flex-row w-full flex-1 h-full">{navItems}</div>
+			)}
+
 			{customSeperator}
 			<div
 				className={cn(
