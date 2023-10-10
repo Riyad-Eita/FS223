@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.redb {
-	border: solid 1px red;
+* {
+	/* border: solid 1px red; */
+	margin: 0;
+	padding: 0;
 }
 
 @layer base {
@@ -74,10 +76,10 @@
 	}
 
 	h1 {
-		@apply text-4xl font-bold mb-4;
+		@apply text-4xl font-bold mb-4 mt-6;
 	}
 	h2 {
-		@apply text-3xl font-bold mb-2;
+		@apply text-3xl font-bold mb-2 mt-6;
 	}
 	h3 {
 		@apply text-2xl font-bold mb-1;

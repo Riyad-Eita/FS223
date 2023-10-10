@@ -31,7 +31,7 @@ export default function Home() {
 
 	return (
 		<main className="h-full w-full">
-			<h1 className="text-ellipsis ">Apprenticeship Reporter</h1>
+			<h1>Apprenticeship Reporter</h1>
 			<div className="h-full w-full grid flex-col flex-wrap md:grid-cols-2">
 				<div className="p-4">
 					<h2>User</h2>

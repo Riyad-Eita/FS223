@@ -16,7 +16,7 @@ const ReportsOverviewPage = () => {
 	return (
 		<>
 			<h2>Reports</h2>
-			<div className="container mx-auto py-10 text-center font-medium">
+			<div className="text-center font-medium">
 				<DataTable columns={columns} data={data || []} />
 			</div>
 		</>
