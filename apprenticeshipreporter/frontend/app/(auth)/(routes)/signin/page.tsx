@@ -40,6 +40,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { signin } from "@/lib/auth";
 import { Loader2 } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 // import { ActionTooltip } from "@/components/action-tooltip";
 // import { Button } from "@/components/ui/button";
@@ -108,10 +109,13 @@ const LoginPage = () => {
 
 	return (
 		<>
-			<Card>
+			<Card className="max-w-full w-[32rem]">
 				<CardHeader className="space-y-1">
-					<CardTitle className="text-2xl">Wecome back!</CardTitle>
-					<CardDescription>Login to your account</CardDescription>
+					<div className="flex items-center justify-between">
+						<CardTitle className="text-2xl">Wecome back!</CardTitle>
+						<ModeToggle />
+					</div>
+					<CardDescription>Provide your login credentials</CardDescription>
 				</CardHeader>
 				<CardContent className="grid gap-4">
 					<Form {...form}>

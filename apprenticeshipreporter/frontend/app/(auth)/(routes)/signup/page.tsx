@@ -38,6 +38,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { signup } from "@/lib/auth";
+import { ModeToggle } from "@/components/mode-toggle";
 
 // import { ActionTooltip } from "@/components/action-tooltip";
 // import { Button } from "@/components/ui/button";
@@ -73,9 +74,12 @@ const SignUpPage = () => {
 	};
 	return (
 		<>
-			<Card className="w-full">
+			<Card className="max-w-full w-[32rem]">
 				<CardHeader className="space-y-1">
-					<CardTitle className="text-2xl">Create an account</CardTitle>
+					<div className="flex items-center justify-between">
+						<CardTitle className="text-2xl">Create an account</CardTitle>
+							<ModeToggle />
+					</div>
 					<CardDescription>
 						Enter your email below to create your account
 					</CardDescription>
