@@ -47,10 +47,10 @@ import { ModeToggle } from "@/components/mode-toggle";
 // import { PenBox } from "lucide-react";
 
 const formSchema = z.object({
-	name: z.string().min(1, {
+	email: z.string().min(1, {
 		message: "Username or Email must be provided",
 	}),
-	pass: z.string().min(1, {
+	password: z.string().min(1, {
 		message: "Password must be provided",
 	}),
 });
@@ -112,7 +112,7 @@ const LoginPage = () => {
 			<Card className="max-w-full w-[32rem]">
 				<CardHeader className="space-y-1">
 					<div className="flex items-center justify-between">
-						<CardTitle className="text-2xl">Wecome back!</CardTitle>
+						<CardTitle className="text-2xl">Welcome back!</CardTitle>
 						<ModeToggle />
 					</div>
 					<CardDescription>Provide your login credentials</CardDescription>
