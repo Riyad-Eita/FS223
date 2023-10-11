@@ -46,12 +46,12 @@ export const NavigationSidebar = ({
 		{ id: "5", name: "Sign In", path: "signin", icon: "File" },
 		{ id: "6", name: "Sign Up", path: "signup", icon: "File" },
 		{ id: "7", name: "Log Out", path: "logout", icon: "File" },
-		{ id: "8", name: "PDF Generator", path: "2", icon: "File" },
-		{ id: "8", name: "PDF Generator", path: "3", icon: "File" },
-		{ id: "8", name: "PDF Generator", path: "4", icon: "File" },
-		{ id: "8", name: "PDF Generator", path: "5", icon: "File" },
-		{ id: "8", name: "PDF Generator", path: "6", icon: "File" },
-		{ id: "8", name: "PDF Generator", path: "7", icon: "File" },
+		//{ id: "8", name: "PDF Generator", path: "2", icon: "File" },<w
+		//{ id: "8", name: "PDF Generator", path: "3", icon: "File" },
+		//{ id: "8", name: "PDF Generator", path: "4", icon: "File" },
+		//{ id: "8", name: "PDF Generator", path: "5", icon: "File" },
+		//{ id: "8", name: "PDF Generator", path: "6", icon: "File" },
+		//{ id: "8", name: "PDF Generator", path: "7", icon: "File" },
 	];
 
 	const navItems = (
