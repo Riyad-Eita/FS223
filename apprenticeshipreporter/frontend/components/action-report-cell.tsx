@@ -18,8 +18,8 @@ const CellAction = ({ row }: CellContext<ReportType, unknown>) => {
 
 	const onclick = () => {
 		if (report) {
-			console.log("Redirect to: " + `/reports/${report.id}`);
-			router.push(`/reports/${report.id}`);
+			console.log("Redirect to: " + `/reports/${report.key}`);
+			router.push(`/reports/${report.key}`);
 		} else {
 			console.error("Report object is null or undefined");
 		}
@@ -37,7 +37,7 @@ const CellAction = ({ row }: CellContext<ReportType, unknown>) => {
 			<DropdownMenuContent align="end">
 				<DropdownMenuLabel>Actions</DropdownMenuLabel>
 				<DropdownMenuItem
-					onClick={() => navigator.clipboard.writeText(report?.id || "")}
+					onClick={() => navigator.clipboard.writeText(report?.key || "")}
 				>
 					Copy report ID
 				</DropdownMenuItem>

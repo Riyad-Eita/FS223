@@ -1,16 +1,17 @@
 import { useRouter, usePathname } from "next/navigation";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";
-import { File, Home, LayoutDashboard } from "lucide-react";
+import { File, Home, LayoutDashboard, Pen } from "lucide-react";
 import { ToolType } from "@/types";
 
-type NavigationItemProps = ToolType;
+type NavigationItemProps = ToolType & { pos: string };
 
 export const NavigationItem = ({
 	id,
 	path,
 	icon,
 	name,
+	pos,
 }: NavigationItemProps) => {
 	const router = useRouter();
 	const active = usePathname() === "/" + path;
@@ -27,6 +28,8 @@ export const NavigationItem = ({
 				return <File />;
 			case "Dashboard":
 				return <LayoutDashboard />;
+			case "Pen":
+				return <Pen />;
 			default:
 				return;
 		}
@@ -37,15 +40,30 @@ export const NavigationItem = ({
 			<button onClick={onClick} className="group relative flex items-center">
 				<div
 					className={cn(
-						"absolute left-0 bg-primary rounded-r-full transition-all w-[4px]",
-						!active && "group-hover:h-[20px]",
-						active ? "h-[36px]" : "h-[8px]"
+						(pos === "left" &&
+							cn(
+								"absolute left-0 bg-primary rounded-r-full transition-all w-[4px]",
+								!active && "group-hover:h-[20px]",
+								active ? "h-[36px]" : "h-[8px]"
+							)) ||
+							cn(
+								"absolute top-0 right-0 left-0 mx-auto bg-primary rounded-r-full transition-all h-[4px]",
+								!active && "group-hover:w-[20px]",
+								active ? "w-[36px]" : "w-[8px]"
+							)
 					)}
 				/>
 				<div
 					className={cn(
-						"flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden items-center justify-center bg-muted dark:bg-neutral-700 group-hover:bg-primary",
-						active && "bg-primary/10 text-primary-foreground rounded-[16px]"
+						(pos === "left" &&
+							cn(
+								"flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden items-center justify-center bg-muted dark:bg-neutral-700 group-hover:bg-primary",
+								active && "bg-primary/10 text-primary-foreground rounded-[16px]"
+							)) ||
+							cn(
+								"flex my-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden items-center justify-center bg-muted dark:bg-neutral-700 group-hover:bg-primary",
+								active && "bg-primary/10 text-primary-foreground rounded-[16px]"
+							)
 					)}
 				>
 					{icon !== undefined ? (

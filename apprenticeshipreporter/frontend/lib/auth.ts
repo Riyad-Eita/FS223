@@ -9,29 +9,49 @@ const GUEST_USER: UserProfileType = {
 };
 
 type LoginProps = {
-	name?: string;
-	pass?: string;
+	firstname?: string;
+	lastname?: string;
+	email?: string;
+	password?: string;
 };
 
-export const login = async ({ name, pass }: LoginProps) => {
-	const response = await axios.post("/api/auth/signin", { name, pass });
-	return response.data;
+export const signin = async ({ email, password }: LoginProps) => {
+	try {
+		const response = await axios.post("localhost:8080/api/auth/signin", {
+			 	email, password
+			});
+		return response.data;
+	} catch (e) {
+		console.error(e);
+	}
+};
+
+export const signup = async ({
+	firstname,
+	lastname,
+	email,
+	password
+}: LoginProps) => {
+	try {
+		await axios.post("http://localhost:8080/api/auth/signup", {firstname, lastname, email, password });
+	} catch (e) {
+		console.error(e);
+	}
 };
 
 export const authenticateUser = async () => {
 	try {
 		const userParams = { name: "Administrator", pass: "admin" };
 
-		const uid =
-			db.profiles.find((profile) => {
-				if (
-					(profile.userName === userParams.name ||
-						profile.userEmail === userParams.name) &&
-					profile.userPassword === userParams.pass
-				)
-					return profile;
-				return null;
-			})?.userId;
+		const uid = db.profiles.find((profile) => {
+			if (
+				(profile.userName === userParams.name ||
+					profile.userEmail === userParams.name) &&
+				profile.userPassword === userParams.pass
+			)
+				return profile;
+			return null;
+		})?.userId;
 
 		return uid;
 	} catch (error) {

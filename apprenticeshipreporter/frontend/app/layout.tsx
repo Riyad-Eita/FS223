@@ -31,8 +31,8 @@ export default function RootLayout({
 					enableSystem={false}
 					storageKey="theme"
 				>
-					<ModalProvider />
 					<ToastContainer theme="dark" />
+					<ModalProvider />
 					{children}
 				</ThemeProvider>
 			</body>

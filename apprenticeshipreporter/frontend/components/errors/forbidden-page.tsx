@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useRedirectAfterSomeSeconds from "@/hooks/use-redirect-timer";
 
 const ForbiddenPage = () => {
-	const { secondsRemaining } = useRedirectAfterSomeSeconds("/login", 10);
+	const { secondsRemaining } = useRedirectAfterSomeSeconds("/signin", 10);
 
 	useEffect(() => {
 		setTimeout(() => {

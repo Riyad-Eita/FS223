@@ -8,10 +8,16 @@ import ForbiddenPage from "@/components/errors/forbidden-page";
 import { useUser } from "@/hooks/use-actions";
 import { redirect } from "next/navigation";
 import { UserProfileType } from "@/types";
+import { cn } from "@/lib/utils";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+	enum SidebarPos {
+		TOP = "top",
+		LEFT = "left",
+	}
+	const sidebarPos: string = SidebarPos.LEFT;
+
 	const { data: user, isLoading, isError } = useUser();
-	// const user = {}
 
 	if (isError) {
 		return <ForbiddenPage />;
@@ -30,10 +36,22 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
 	return (
 		<div className="min-h-screen">
-			<div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
-				<NavigationSidebar profile={user} db={db} />
+			<div
+				className={cn(
+					(sidebarPos === "left" && "h-full w-[72px] ") || "w-full h-[72px]",
+					"hidden md:flex z-30 flex-col inset-y-0 fixed"
+				)}
+			>
+				<NavigationSidebar profile={user} db={db} pos={sidebarPos} />
 			</div>
-			<div className="md:pl-[72px] h-full ml-6 p-6">{children}</div>
+			<div
+				className={cn(
+					(sidebarPos === "left" && "md:pl-[72px] ml-6") || "md:pt-[72px]",
+					"h-full p-6"
+				)}
+			>
+				{children}
+			</div>
 		</div>
 	);
 };
