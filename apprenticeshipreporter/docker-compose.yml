@@ -1,14 +1,13 @@
 version: '3.8'
 services:
-  app:
-    image: frontend
+  frontend:
     build:
       context: ./
-      target: dev
-      dockerfile: Dockerfile
+      target: runner
     volumes:
-        - .:/app
-        - /app/node_modules
-        - /app/.next
+      - .:/app
+    command: npm run dev
     ports:
       - "3000:3000"
+    environment:
+      NODE_ENV: development
