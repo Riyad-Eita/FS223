@@ -45,13 +45,16 @@ import { ModeToggle } from "@/components/mode-toggle";
 // import { PenBox } from "lucide-react";
 
 const formSchema = z.object({
-	name: z.string().min(0, {
-		message: "Username is optional.",
+	firstname: z.string().min(0, {
+		message: "firstname required",
 	}),
-	mail: z.string().min(1, { message: "Email is required" }).email({
+	lastname: z.string().min(0, {
+		message: "lastname required",
+	}),
+	email: z.string().min(1, { message: "Email is required" }).email({
 		message: "Must be a valid email",
 	}),
-	pass: z.string().min(6, { message: "Password must be atleast 6 characters" }),
+	password: z.string().min(6, { message: "Password must be atleast 6 characters" })
 });
 
 const SignUpPage = () => {
@@ -59,9 +62,10 @@ const SignUpPage = () => {
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			name: "",
-			mail: "",
-			pass: "",
+			firstname: "",
+			lastname: "",
+			email: "",
+			password: ""
 		},
 	});
 
@@ -90,51 +94,73 @@ const SignUpPage = () => {
 							<div className="space-y-8">
 								<FormField
 									control={form.control}
-									name="name"
+									name="firstname"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
-												User Name
+												First Name
 											</FormLabel>
 											<FormControl>
 												<Input
 													disabled={isLoading}
 													className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
-													placeholder="Enter Your Username"
+													placeholder="Enter Your First Name"
 													{...field}
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.firstname?.message}
 											</FormMessage>
 										</FormItem>
 									)}
 								/>
 								<FormField
 									control={form.control}
-									name="mail"
+									name="lastname"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
-												Email
+												Last Name
 											</FormLabel>
 											<FormControl>
 												<Input
 													disabled={isLoading}
 													className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
-													placeholder="Enter Your Email"
+													placeholder="Enter Your Last Name"
 													{...field}
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.lastname?.message}
 											</FormMessage>
 										</FormItem>
 									)}
 								/>
 								<FormField
 									control={form.control}
-									name="pass"
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="uppercase text-xs font-bold">
+												E-Mail
+											</FormLabel>
+											<FormControl>
+												<Input
+													disabled={isLoading}
+													className="bg-[--card]/20 border-0 focus-visible:ring-0 text-[--card] focus-visible:ring-offset-0"
+													placeholder="Enter Your E-Mail"
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage className="text-xs text-red-500">
+												{form.formState.errors.email?.message}
+											</FormMessage>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="password"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
@@ -150,7 +176,7 @@ const SignUpPage = () => {
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.password?.message}
 											</FormMessage>
 										</FormItem>
 									)}

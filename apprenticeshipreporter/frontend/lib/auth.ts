@@ -9,13 +9,17 @@ const GUEST_USER: UserProfileType = {
 };
 
 type LoginProps = {
-	name?: string;
-	pass?: string;
+	firstname?: string;
+	lastname?: string;
+	email?: string;
+	password?: string;
 };
 
-export const signin = async ({ name, pass }: LoginProps) => {
+export const signin = async ({ email, password }: LoginProps) => {
 	try {
-		const response = await axios.post("/api/auth/signin", { name, pass });
+		const response = await axios.post("localhost:8080/api/auth/signin", {
+			 	email, password
+			});
 		return response.data;
 	} catch (e) {
 		console.error(e);
@@ -23,12 +27,13 @@ export const signin = async ({ name, pass }: LoginProps) => {
 };
 
 export const signup = async ({
-	name,
-	mail,
-	pass,
-}: LoginProps & { mail: string }) => {
+	firstname,
+	lastname,
+	email,
+	password
+}: LoginProps) => {
 	try {
-		await axios.post("/api/auth/signup", { name, mail, pass });
+		await axios.post("http://localhost:8080/api/auth/signup", {firstname, lastname, email, password });
 	} catch (e) {
 		console.error(e);
 	}

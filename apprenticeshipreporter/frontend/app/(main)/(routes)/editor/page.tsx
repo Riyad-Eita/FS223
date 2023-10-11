@@ -1,46 +1,22 @@
 "use client";
 
-import { Icons } from "@/components/ui/icons";
-import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+import PdfView from "@/components/pdf/pdf-view";
+import { useUser } from "@/hooks/use-actions";
+import { UserProfileType } from "@/types";
 
-const EditorPage = () => {
+const EditorPage: React.FC<{}> = () => {
+	const user = useUser();
+	const userProfile: UserProfileType = user.data;
 	return (
-		<Card>
-			<CardHeader className="space-y-1">
-				<CardTitle className="text-2xl">Create an account</CardTitle>
-				<CardDescription>
-					Enter your email below to create your account
-				</CardDescription>
-			</CardHeader>
-			<CardContent className="grid gap-4">
-				<div className="grid gap-2">
-					<Label htmlFor="email">Email</Label>
-					<Input id="email" type="email" placeholder="m@example.com" />
-				</div>
-				<div className="grid gap-2">
-					<Label htmlFor="password">Password</Label>
-					<Input id="password" type="password" />
-				</div>
-				<div className="relative">
-					<div className="absolute inset-0 flex items-center">
-						<span className="w-full border-t" />
-					</div>
-				</div>
-			</CardContent>
-			<CardFooter>
-				<Button className="w-full">Create account</Button>
-			</CardFooter>
-		</Card>
+		<div className="grid md:grid-cols-2 justify-between">
+			<div>
+				<h2>Report</h2>
+				<p>...</p>
+			</div>
+			<PdfView {...userProfile} />
+		</div>
 	);
 };
 

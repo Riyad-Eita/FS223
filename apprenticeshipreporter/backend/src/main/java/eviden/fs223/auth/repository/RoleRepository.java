@@ -10,5 +10,5 @@ import eviden.fs223.auth.models.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-  Optional<Role> findByName(ERole name);
+  Optional<Role> findById(long id);
 }
