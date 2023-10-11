@@ -2,10 +2,10 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./
+      context: ./frontend
       target: runner
     volumes:
-      - .:/app
+      - .:./frontend/app
     command: npm run dev
     ports:
       - "3000:3000"
