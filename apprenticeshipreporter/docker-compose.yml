@@ -26,7 +26,7 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: "db"
+      MYSQL_DATABASE: "apprenticeshipreporter"
       # So you don't have to use root, but you can if you like
       MYSQL_USER: "nado"
       # You can use whatever password you like
