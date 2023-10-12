@@ -116,7 +116,7 @@ export const SignUpCard = () => {
 				progress: undefined,
 			});
 			form.reset();
-			router.refresh();
+			router.push("/signin");
 		} catch (e) {
 			console.error(e);
 		}
