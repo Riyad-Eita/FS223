@@ -17,9 +17,7 @@ type LoginProps = {
 
 export const signin = async ({ email, password }: LoginProps) => {
 	try {
-		const response = await axios.post("localhost:8080/api/auth/signin", {
-			 	email, password
-			});
+		const response = await axios.post("http://localhost:8080/api/auth/signin", { email, password });
 		return response.data;
 	} catch (e) {
 		console.error(e);

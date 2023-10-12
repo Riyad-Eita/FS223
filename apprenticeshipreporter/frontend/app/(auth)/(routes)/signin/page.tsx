@@ -59,9 +59,8 @@ const LoginPage = () => {
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			name: "",
-			mail: "",
-			pass: "",
+			email: "",
+			password: "",
 		},
 	});
 
@@ -93,9 +92,9 @@ const LoginPage = () => {
 				});
 				form.reset({
 					...values,
-					pass: "",
+					password: "",
 				});
-				form.setFocus("pass");
+				form.setFocus("password");
 			}
 		} catch (e) {
 			console.error(e);
@@ -123,11 +122,11 @@ const LoginPage = () => {
 							<div className="space-y-8">
 								<FormField
 									control={form.control}
-									name="name"
+									name="email"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
-												Email or Username
+												Email
 											</FormLabel>
 											<FormControl>
 												<Input
@@ -138,14 +137,14 @@ const LoginPage = () => {
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.email?.message}
 											</FormMessage>
 										</FormItem>
 									)}
 								/>
 								<FormField
 									control={form.control}
-									name="pass"
+									name="password"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
@@ -161,7 +160,7 @@ const LoginPage = () => {
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.password?.message}
 											</FormMessage>
 										</FormItem>
 									)}
