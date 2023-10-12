@@ -35,12 +35,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { signin } from "@/lib/auth";
 import { Loader2 } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Separator } from "../ui/separator";
 
 // import { ActionTooltip } from "@/components/action-tooltip";
 // import { Button } from "@/components/ui/button";
@@ -54,14 +55,13 @@ const formSchema = z.object({
 		message: "Password must be provided",
 	}),
 });
-const LoginPage = () => {
+export const SignInCard = () => {
 	const router = useRouter();
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			name: "",
-			mail: "",
-			pass: "",
+			email: "",
+			password: "",
 		},
 	});
 
@@ -69,9 +69,10 @@ const LoginPage = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			const userId = await signin(values);
-			if (userId !== null) {
-				toast.success("Login successful", {
+			const response = await signin(values);
+
+			if (response instanceof AxiosError) {
+				toast.error(response.message, {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
 					hideProgressBar: true,
@@ -80,8 +81,10 @@ const LoginPage = () => {
 					draggable: true,
 					progress: undefined,
 				});
-				handleClose();
-			} else {
+				return;
+			}
+
+			if (response === null) {
 				toast.error("Login failed", {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
@@ -93,10 +96,22 @@ const LoginPage = () => {
 				});
 				form.reset({
 					...values,
-					pass: "",
+					password: "",
 				});
-				form.setFocus("pass");
+				form.setFocus("password");
+				return;
 			}
+
+			toast.success("Login successful", {
+				position: toast.POSITION.TOP_CENTER,
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+			handleClose();
 		} catch (e) {
 			console.error(e);
 		}
@@ -109,7 +124,7 @@ const LoginPage = () => {
 
 	return (
 		<>
-			<Card className="max-w-full w-[32rem]">
+			<Card className="max-w-full w-[32rem] p-8">
 				<CardHeader className="space-y-1">
 					<div className="flex items-center justify-between">
 						<CardTitle className="text-2xl">Welcome back!</CardTitle>
@@ -119,11 +134,11 @@ const LoginPage = () => {
 				</CardHeader>
 				<CardContent className="grid gap-4">
 					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-							<div className="space-y-8">
+						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+							<div className="space-y-4">
 								<FormField
 									control={form.control}
-									name="name"
+									name="email"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
@@ -138,14 +153,14 @@ const LoginPage = () => {
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.email?.message}
 											</FormMessage>
 										</FormItem>
 									)}
 								/>
 								<FormField
 									control={form.control}
-									name="pass"
+									name="password"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel className="uppercase text-xs font-bold">
@@ -161,32 +176,41 @@ const LoginPage = () => {
 												/>
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
-												{form.formState.errors.name?.message}
+												{form.formState.errors.password?.message}
 											</FormMessage>
 										</FormItem>
 									)}
 								/>
-							</div>
-							<DialogFooter className="bg-grey-100 py-4">
+								<Separator />
 								{(isLoading && (
-									<Button disabled>
+									<Button
+										className="w-full cursor-progress"
+										variant="secondary"
+										disabled
+									>
 										<Loader2 className="mr-2 h-4 w-4 animate-spin" />
 										Please wait
 									</Button>
 								)) || <Button className="w-full">Login</Button>}
-							</DialogFooter>
+							</div>
 						</form>
 					</Form>
 				</CardContent>
-				<CardFooter>-- Or Sign Up --</CardFooter>
 				<CardFooter>
-					<Button variant={"outline"} className="w-full">
-						Create account
-					</Button>
+					<div className="w-full flex flex-col justify-center items-center space-y-4">
+						<p>or</p>
+						<Button
+							onClick={() => {
+								router.push("/signup");
+							}}
+							variant={"outline"}
+							className="w-full"
+						>
+							Create account
+						</Button>
+					</div>
 				</CardFooter>
 			</Card>
 		</>
 	);
 };
-
-export default LoginPage;

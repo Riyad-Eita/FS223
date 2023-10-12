@@ -6,14 +6,25 @@ import { UserProfileType } from "@/types";
 
 export async function GET() {
 	try {
-		const activeUser: UserProfileType = await currentProfile();
+		const userParams = { name: "User", pass: "user" };
+
+		const activeUser: UserProfileType | undefined = await db.profiles.find(
+			(profile) => {
+				if (
+					(profile.userName === userParams.name ||
+						profile.userEmail === userParams.name) &&
+					profile.userPassword === userParams.pass
+				)
+					return profile;
+				return null;
+			}
+		); // await currentProfile();
 
 		if (!activeUser) {
 			return new NextResponse("Unauthorized", { status: 401 });
 		}
 
 		const user = db.profiles.find((item) => {
-
 			return item.userId === activeUser.userId ? item : null;
 		});
 

@@ -2,21 +2,19 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { LogOutIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "sonner";
 import { UserProfileType, ReportType } from "@/types";
 import { useUser, useReports } from "@/hooks/use-actions";
 import React from "react";
-import ReportsOverview from "@/components/reports/reports-overview";
 
 export default function Home() {
 	const params = useParams();
 	const router = useRouter();
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
-	const user = useUser();
-	const reports = useReports();
+	// const user = useUser();
+	// const reports = useReports();
 
 	const userHTMLData = (obj: any) => {
 		if (!obj) return null;
@@ -33,7 +31,6 @@ export default function Home() {
 		<main className="h-full w-full">
 			<h1>Apprenticeship Reporter</h1>
 			<div className="h-full w-full grid flex-col flex-wrap md:grid-cols-2">
-
 				{/* <div className="p-4">
 					<h2>User</h2>
 					{userHTMLData(user?.data)}
@@ -51,18 +48,18 @@ export default function Home() {
 					</div>
 				</div>
 
-				 {/* <div className="p-4 truncate ...">
+				{/* <div className="p-4 truncate ...">
 					<ReportsOverview reports={reports?.data} />
 				</div> */}
 
-			{/* 	<div className="p-4">
+				{/* 	<div className="p-4">
 					<h2>Profiles</h2>
 					<p>Coming soon...</p>
 				</div> */}
 
 				<Button
 					onClick={() => {
-						router.push(`/logout`);
+						router.push(`/signout`);
 						toast.success("Logged out");
 					}}
 					className="fixed top-4 right-4"

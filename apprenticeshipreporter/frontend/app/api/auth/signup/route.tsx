@@ -5,10 +5,10 @@ import { db } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
 	try {
-		const { name, mail, pass } = await req.json();
+		/* const { name, mail, pass } = await req.json();
 
 		const profile = await currentProfile();
-    
+
 		const newUser = {
 			userId: uuid4(),
 			userEmail: mail,
@@ -18,9 +18,10 @@ export async function POST(req: NextRequest) {
 			language: "de",
 		};
 
-		const body = await db.profiles.push(newUser);
+		const body = await db.profiles.push(newUser); */
 
-		return NextResponse.json(body);
+		return new NextResponse("Success", { status: 200 });
+		// return NextResponse.json(body);
 	} catch (error) {
 		console.log("[SERVER_POST]", error);
 		return new NextResponse("Internal Error", { status: 500 });
