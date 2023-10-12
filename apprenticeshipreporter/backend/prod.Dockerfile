@@ -11,7 +11,7 @@ COPY . .
 RUN mvn clean package -X
 
 # Create a smaller image to run the application
-FROM openjdk:22-jdk
+FROM openjdk:17-jdk
 
 # Set the working directory inside the container
 WORKDIR /app
