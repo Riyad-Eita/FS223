@@ -75,6 +75,8 @@ export const SignUpCard = () => {
 		try {
 			const response = await signup(values);
 
+			console.log(response)
+
 			if (response instanceof AxiosError) {
 				toast.error(response.message, {
 					position: toast.POSITION.TOP_CENTER,

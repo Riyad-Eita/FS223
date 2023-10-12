@@ -20,16 +20,16 @@ services:
     networks:
       - apprenticeshipreporter
 
-  maven:
-    depends_on:
-      - db
-    container_name: backend
-    build:
-      context: ./backend
-      dockerfile: prod.Dockerfile
-    restart: always
-    ports:
-      - 8080:8080
+  # maven:
+  #   depends_on:
+  #     - db
+  #   container_name: backend
+  #   build:
+  #     context: ./backend
+  #     dockerfile: prod.Dockerfile
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
     #   - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
     # environment:
     #   SPRING_APPLICATION_JSON: '{
@@ -39,8 +39,8 @@ services:
     #     "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
     #     "spring.jpa.hibernate.ddl-auto" : "update"
     #     }'
-    networks:
-      - apprenticeshipreporter
+    # networks:
+    #   - apprenticeshipreporter
 
   db:
     container_name: mysql
