@@ -13,19 +13,22 @@ import eviden.fs223.auth.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-  @Autowired
-  UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-  @Transactional
-  public UserDetails loadUserById(long id) throws UsernameNotFoundException {
-    User user = userRepository.findById(id)
-        .orElseThrow(() -> new UsernameNotFoundException("User Not Found with id: " + id));
+    @Transactional
+    public UserDetails loadUserById(long id) throws UsernameNotFoundException {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with id: " + id));
 
-    return UserDetailsImpl.build(user);
-  }
+        return UserDetailsImpl.build(user);
+    }
 
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    return null;
-  }
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with email: " + email));
+
+        return UserDetailsImpl.build(user);
+    }
 }
