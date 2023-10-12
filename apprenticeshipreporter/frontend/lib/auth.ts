@@ -15,15 +15,22 @@ type LoginProps = {
 	password?: string;
 };
 
+export const session = (jwtoken?: string) => {
+	if (jwtoken === "token") return true;
+
+	return false;
+};
+
 export const signin = async ({ email, password }: LoginProps) => {
 	try {
-		const response = await axios.post("localhost:8080/api/auth/signin", {
+		const response = await axios.post("http://localhost:8080/api/auth/signin", {
 			email,
 			password,
 		});
 		return response.data;
 	} catch (e) {
 		console.error(e);
+		return e;
 	}
 };
 

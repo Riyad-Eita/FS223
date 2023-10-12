@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useRedirectAfterSomeSeconds from "@/hooks/use-redirect-timer";
 import { LucideHeartHandshake } from "lucide-react";
 
-const LogoutPage = () => {
+const SignOutCard = () => {
 	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 10);
 
 	useEffect(() => {
@@ -29,9 +29,11 @@ const LogoutPage = () => {
 		<>
 			<LucideHeartHandshake className="h-24 w-24" />
 			<h2 className="m-4 text-opacity-80">Goodbye</h2>
-			<p className="text-muted-foreground">Redirect in {secondsRemaining} seconds</p>
+			<p className="text-muted-foreground">
+				Redirect in {secondsRemaining} seconds
+			</p>
 		</>
 	);
 };
 
-export default LogoutPage;
+export default SignOutCard;

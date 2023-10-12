@@ -59,7 +59,7 @@ export default function Home() {
 
 				<Button
 					onClick={() => {
-						router.push(`/logout`);
+						router.push(`/signout`);
 						toast.success("Logged out");
 					}}
 					className="fixed top-4 right-4"

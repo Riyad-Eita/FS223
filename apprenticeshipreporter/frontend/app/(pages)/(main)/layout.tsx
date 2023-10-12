@@ -9,6 +9,7 @@ import { useUser } from "@/hooks/use-actions";
 import { redirect } from "next/navigation";
 import { UserProfileType } from "@/types";
 import { cn } from "@/lib/utils";
+import { session } from "@/lib/auth";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	enum SidebarPos {
