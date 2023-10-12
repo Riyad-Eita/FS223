@@ -21,6 +21,7 @@ services:
       - apprenticeshipreporter
 
   db:
+    container_name: mysql
     image: mysql:latest
     restart: always
     environment:
