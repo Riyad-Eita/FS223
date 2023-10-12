@@ -16,7 +16,6 @@ services:
       - .env
     volumes:
       - ./frontend:/frontend
-      - ./frontend/public:/frontend/public
     restart: always
     ports:
       - 3000:3000
