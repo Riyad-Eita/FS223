@@ -1,21 +1,31 @@
 package eviden.fs223.auth.payload.response;
 
+import eviden.fs223.auth.models.Role;
+import eviden.fs223.auth.models.User;
+
 import java.util.List;
 
 public class JwtResponse {
   private String token;
   private String type = "Bearer";
-  private Long id;
-  private String username;
-  private String email;
-  private List<String> roles;
 
-  public JwtResponse(String accessToken, Long id, String username, String email, List<String> roles) {
+  private User user;
+  /*
+  private Long id;
+  private String email;
+  private Role role;
+
+   */
+
+  public JwtResponse(String accessToken, User user) {
     this.token = accessToken;
+    this.user = user;
+    /*
     this.id = id;
-    this.username = username;
     this.email = email;
-    this.roles = roles;
+    this.role = role;
+
+     */
   }
 
   public String getAccessToken() {
@@ -34,6 +44,15 @@ public class JwtResponse {
     this.type = tokenType;
   }
 
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  /*
   public Long getId() {
     return id;
   }
@@ -50,15 +69,13 @@ public class JwtResponse {
     this.email = email;
   }
 
-  public String getUsername() {
-    return username;
+  public Role getRole() {
+    return role;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setRole(Role role) {
+    this.role = role;
   }
 
-  public List<String> getRoles() {
-    return roles;
-  }
+   */
 }
