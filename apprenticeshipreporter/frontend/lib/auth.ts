@@ -41,14 +41,16 @@ export const signup = async ({
 	password,
 }: LoginProps) => {
 	try {
-		await axios.post("http://localhost:8080/api/auth/signup", {
+		const response = await axios.post("http://localhost:8080/api/auth/signup", {
 			firstname,
 			lastname,
 			email,
 			password,
 		});
+		return response;
 	} catch (e) {
 		console.error(e);
+		return e;
 	}
 };
 

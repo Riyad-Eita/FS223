@@ -35,11 +35,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { signup } from "@/lib/auth";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Separator } from "../ui/separator";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
 	firstname: z.string().min(0, {
@@ -71,9 +72,54 @@ export const SignUpCard = () => {
 	const isLoading = form.formState.isSubmitting;
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		await signup(values);
-		form.reset();
-		router.refresh();
+		try {
+			const response = await signup(values);
+
+			if (response instanceof AxiosError) {
+				toast.error(response.message, {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+				return;
+			}
+
+			if (response === null) {
+				toast.error("Signup failed", {
+					position: toast.POSITION.TOP_CENTER,
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+				form.reset({
+					...values,
+					password: "",
+				});
+				form.setFocus("password");
+				return;
+			}
+
+			toast.success("Signup successful", {
+				position: toast.POSITION.TOP_CENTER,
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+			form.reset();
+			router.refresh();
+		} catch (e) {
+			console.error(e);
+		}
 	};
 	return (
 		<>
@@ -208,3 +254,6 @@ export const SignUpCard = () => {
 		</>
 	);
 };
+function handleClose() {
+	throw new Error("Function not implemented.");
+}
