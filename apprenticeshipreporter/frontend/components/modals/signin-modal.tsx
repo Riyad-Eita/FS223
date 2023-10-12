@@ -32,10 +32,10 @@ import { Loader2 } from "lucide-react";
 import { signin } from "@/lib/auth";
 
 const formSchema = z.object({
-	name: z.string().min(1, {
+	email: z.string().min(1, {
 		message: "Username or Email must be provided",
 	}),
-	pass: z.string().min(1, {
+	password: z.string().min(1, {
 		message: "Password must be provided",
 	}),
 });
@@ -50,8 +50,8 @@ export const SignInModal = () => {
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			name: "",
-			pass: "",
+			email: "",
+			password: "",
 		},
 	});
 
@@ -83,9 +83,9 @@ export const SignInModal = () => {
 				});
 				form.reset({
 					...values,
-					pass: "",
+					password: "",
 				});
-				form.setFocus("pass");
+				form.setFocus("password");
 			}
 		} catch (e) {
 			console.error(e);
@@ -114,7 +114,7 @@ export const SignInModal = () => {
 						<div className="space-y-8 px-6">
 							<FormField
 								control={form.control}
-								name="name"
+								name="email"
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel className="uppercase text-xs font-bold">
@@ -129,14 +129,14 @@ export const SignInModal = () => {
 											/>
 										</FormControl>
 										<FormMessage className="text-xs text-red-500">
-											{form.formState.errors.name?.message}
+											{form.formState.errors.email?.message}
 										</FormMessage>
 									</FormItem>
 								)}
 							/>
 							<FormField
 								control={form.control}
-								name="pass"
+								name="password"
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel className="uppercase text-xs font-bold">
@@ -152,7 +152,7 @@ export const SignInModal = () => {
 											/>
 										</FormControl>
 										<FormMessage className="text-xs text-red-500">
-											{form.formState.errors.name?.message}
+											{form.formState.errors.password?.message}
 										</FormMessage>
 									</FormItem>
 								)}

@@ -8,7 +8,7 @@ const ReportsOverview = ({ reports }: { reports: ReportType[] }) => {
 			{reports.map((report: ReportType, key: React.Key) => {
 				return (
 					<p key={key}>
-						{report.week} | {report.plan} - {report.comments}
+						{report?.week} | {report?.plan} - {report?.comments}
 					</p>
 				);
 			})}

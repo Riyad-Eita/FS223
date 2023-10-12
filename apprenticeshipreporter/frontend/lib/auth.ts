@@ -18,8 +18,9 @@ type LoginProps = {
 export const signin = async ({ email, password }: LoginProps) => {
 	try {
 		const response = await axios.post("localhost:8080/api/auth/signin", {
-			 	email, password
-			});
+			email,
+			password,
+		});
 		return response.data;
 	} catch (e) {
 		console.error(e);
@@ -30,10 +31,15 @@ export const signup = async ({
 	firstname,
 	lastname,
 	email,
-	password
+	password,
 }: LoginProps) => {
 	try {
-		await axios.post("http://localhost:8080/api/auth/signup", {firstname, lastname, email, password });
+		await axios.post("http://localhost:8080/api/auth/signup", {
+			firstname,
+			lastname,
+			email,
+			password,
+		});
 	} catch (e) {
 		console.error(e);
 	}
