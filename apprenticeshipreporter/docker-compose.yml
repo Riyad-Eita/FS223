@@ -5,7 +5,7 @@ services:
     container_name: frontend
     build:
       context: ./frontend
-      dockerfile: dev.Dockerfile
+      dockerfile: prod.Dockerfile
 
     # Set environment variables directly in the docker-compose file
     environment:
