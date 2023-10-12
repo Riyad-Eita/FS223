@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  frontend:
+  nextjs:
     container_name: frontend
     build:
       context: ./frontend
@@ -17,6 +17,28 @@ services:
     restart: always
     ports:
       - 3000:3000
+    networks:
+      - apprenticeshipreporter
+
+  maven:
+    depends_on:
+      - db
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: prod.Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    #   - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    # environment:
+    #   SPRING_APPLICATION_JSON: '{
+    #     "spring.datasource.url"  : "jdbc:mysql://mysqldb:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?useSSL=false",
+    #     "spring.datasource.username" : "$MYSQLDB_USER",
+    #     "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
+    #     "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+    #     "spring.jpa.hibernate.ddl-auto" : "update"
+    #     }'
     networks:
       - apprenticeshipreporter
 
