@@ -2,21 +2,19 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { LogOutIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "sonner";
 import { UserProfileType, ReportType } from "@/types";
 import { useUser, useReports } from "@/hooks/use-actions";
 import React from "react";
-import ReportsOverview from "@/components/reports/reports-overview";
 
 export default function Home() {
 	const params = useParams();
 	const router = useRouter();
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
-	const user = useUser();
-	const reports = useReports();
+	// const user = useUser();
+	// const reports = useReports();
 
 	const userHTMLData = (obj: any) => {
 		if (!obj) return null;
@@ -38,61 +36,6 @@ export default function Home() {
 					{userHTMLData(user?.data)}
 				</div> */}
 
-				<div className="p-4">
-					<h2>Calendar</h2>
-					<div className="w-fit pt-6 pb-6">
-						<Calendar
-							mode="single"
-							selected={date}
-							onSelect={setDate}
-							className="rounded-md border"
-						/>
-					</div>
-				</div>
-				<div className="p-4">
-					<h2>Calendar</h2>
-					<div className="w-fit pt-6 pb-6">
-						<Calendar
-							mode="single"
-							selected={date}
-							onSelect={setDate}
-							className="rounded-md border"
-						/>
-					</div>
-				</div>
-				<div className="p-4">
-					<h2>Calendar</h2>
-					<div className="w-fit pt-6 pb-6">
-						<Calendar
-							mode="single"
-							selected={date}
-							onSelect={setDate}
-							className="rounded-md border"
-						/>
-					</div>
-				</div>
-				<div className="p-4">
-					<h2>Calendar</h2>
-					<div className="w-fit pt-6 pb-6">
-						<Calendar
-							mode="single"
-							selected={date}
-							onSelect={setDate}
-							className="rounded-md border"
-						/>
-					</div>
-				</div>
-				<div className="p-4">
-					<h2>Calendar</h2>
-					<div className="w-fit pt-6 pb-6">
-						<Calendar
-							mode="single"
-							selected={date}
-							onSelect={setDate}
-							className="rounded-md border"
-						/>
-					</div>
-				</div>
 				<div className="p-4">
 					<h2>Calendar</h2>
 					<div className="w-fit pt-6 pb-6">
