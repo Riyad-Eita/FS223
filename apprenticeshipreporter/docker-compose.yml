@@ -20,7 +20,7 @@ services:
     networks:
       - apprenticeshipreporter
 
-  db:
+  mysql:
     container_name: mysql
     image: mysql:latest
     restart: always
