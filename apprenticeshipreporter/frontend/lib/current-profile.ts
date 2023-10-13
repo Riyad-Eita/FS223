@@ -1,17 +1,9 @@
-import { db } from "@/lib/db";
 import authenticateUser from "./auth";
-import { type } from "os";
-
-const debug = (message: string) => {
-	// console.log(`[DEBUG] ${message}`);
-};
 
 export const currentProfile = async ({ email }: { email: string }) => {
-	debug("Starting currentProfile function");
 	const isAuthenticated = await authenticateUser(email);
 
 	if (!isAuthenticated) {
-		debug("User not authenticated");
 		return null;
 	}
 
@@ -22,6 +14,5 @@ export const currentProfile = async ({ email }: { email: string }) => {
 		lastname: "McGough",
 	};
 
-	debug("Profile found");
 	return profile;
 };
