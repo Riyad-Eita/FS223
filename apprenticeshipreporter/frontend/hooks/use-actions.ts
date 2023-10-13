@@ -1,11 +1,17 @@
 import useSWR from "swr";
 
 export const useUser = () => {
-	const { data, isLoading, error } = useSWR("auth", async () => {
-		const response = await fetch("/api/auth");
-		const data = await response.json();
-		return data;
-	});
+	const { data, isLoading, error } = {
+		data: {
+			id: 1,
+			email: "stevenmc59@gmail.com",
+			firstname: "Steven",
+			lastname: "McGough",
+		},
+		isLoading: false,
+		error: null,
+	}
+	
 	return { data, isLoading, isError: error };
 };
 

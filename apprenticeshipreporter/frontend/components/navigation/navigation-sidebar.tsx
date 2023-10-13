@@ -43,7 +43,7 @@ export const NavigationSidebar = ({
 		},
 		{ id: "3", name: "Editor", path: "editor", icon: "Pen" },
 		{ id: "4", name: "PDF Generator", path: "pdf-gen", icon: "File" },
-		{ id: "5", name: "Sign In", path: "signin", icon: "LogIn" },
+		{ id: "8", name: "Sign In", path: "signin", icon: "LogIn" },
 		{ id: "6", name: "Sign Up", path: "signup", icon: "File" },
 		{ id: "7", name: "Log Out", path: "signout", icon: "File" },
 		//{ id: "8", name: "PDF Generator", path: "2", icon: "File" },<w

@@ -7,10 +7,11 @@ export enum UserRole {
 
 // User profile type
 export type UserProfileType = {
-	userId?: string;
-	userEmail?: string | null;
-	userName?: string | null;
-	userPassword?: string | null;
+	id?: number;
+	email?: string | null;
+	firstname?: string | null;
+	lastname?: string | null;
+	password?: string | null;
 	userImage?: string | null;
 	language?: string | null;
 	role?: string | null; // Use the UserRole enum for role

@@ -25,7 +25,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	}
 
 	// If user is null then popup login modal and set user
-	if ((user as UserProfileType)?.userId === undefined) {
+	if ((user as UserProfileType)?.id === undefined) {
 		return (
 			<div className="h-screen w-screen flex flex-col justify-center items-center">
 				{(isLoading && (
