@@ -1,7 +1,9 @@
+import WorkReportForm from "@/components/pdf-gen/WorkReportForm";
+
 const PdfGen = () => {
 	return (
 		<>
-			<h2>PDF Generator</h2>
+			<WorkReportForm />
 		</>
 	);
 };

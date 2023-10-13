@@ -56,7 +56,7 @@ export const signup = async ({
 
 export const authenticateUser = async () => {
 	try {
-		const userParams = { name: "Administrator", pass: "admin" };
+		const userParams = { name: "User", pass: "user" };
 
 		const uid = db.profiles.find((profile) => {
 			if (
