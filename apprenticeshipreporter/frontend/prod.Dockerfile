@@ -1,19 +1,24 @@
-# Use a smaller base image
-FROM node:14-alpine
+FROM node:16-alpine
 
-# Set the working directory
 WORKDIR /app
 
-# Copy only necessary files for dependency installation
-COPY package*.json package-lock*.json ./
+# Copy package.json and package-lock.json to the container
+COPY package.json package-lock.json* ./
+COPY * .
 
-# Copy the rest of the application files
-COPY ./* .
+RUN npm cache clean
 
-RUN npm cache clean --force
-
-# Install dependencies
+# Install project dependencies using npm
 RUN npm ci
+
+COPY app ./app
+COPY components ./components
+COPY hooks ./hooks
+COPY images ./images
+COPY lib ./lib
+COPY public ./public
+COPY next.config.js .
+COPY tsconfig.json .
 
 # Build the application
 RUN npm run build
@@ -22,4 +27,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
