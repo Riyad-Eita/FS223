@@ -5,10 +5,11 @@ FROM node:14-alpine
 WORKDIR /app
 
 # Copy only necessary files for dependency installation
-COPY package*.json ./
+COPY package*.json package-lock*.json ./
+
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy the rest of the application files
 COPY . .
