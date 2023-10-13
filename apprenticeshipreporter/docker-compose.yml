@@ -16,7 +16,7 @@ services:
       - .env
     restart: always
     ports:
-      - 443:3000
+      - 3000:3000
     networks:
       - apprenticeshipreporter
 
