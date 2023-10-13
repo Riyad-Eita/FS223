@@ -71,7 +71,9 @@ export const SignInCard = () => {
 		try {
 			const response = await signin(values);
 
-			if (response instanceof AxiosError) {
+			console.log(response)
+
+			if (!response.user) {
 				toast.error(response.message, {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
@@ -81,24 +83,8 @@ export const SignInCard = () => {
 					draggable: true,
 					progress: undefined,
 				});
-				return;
-			}
 
-			if (response === null) {
-				toast.error("Login failed", {
-					position: toast.POSITION.TOP_CENTER,
-					autoClose: 2000,
-					hideProgressBar: true,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-				form.reset({
-					...values,
-					password: "",
-				});
-				form.setFocus("password");
+				handleFormFieldPasswordReset(values);
 				return;
 			}
 
@@ -111,15 +97,21 @@ export const SignInCard = () => {
 				draggable: true,
 				progress: undefined,
 			});
-			handleClose();
+
+			form.reset();
+			router.push(`/`);
+			return response.user;
 		} catch (e) {
 			console.error(e);
 		}
 	};
 
-	const handleClose = () => {
-		form.reset();
-		router.push(`/`);
+	const handleFormFieldPasswordReset = (values: z.infer<typeof formSchema>) => {
+		form.reset({
+			...values,
+			password: "",
+		});
+		form.setFocus("password");
 	};
 
 	return (

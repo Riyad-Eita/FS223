@@ -1,8 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import useSWR from "swr";
 import { v4 as uuidv4 } from "uuid";
-
 import { UserProfileType } from "@/types";
-import { db } from "./db";
 
 const GUEST_USER: UserProfileType = {
 	userId: uuidv4(),
@@ -22,16 +21,29 @@ export const session = (jwtoken?: string) => {
 };
 
 export const signin = async ({ email, password }: LoginProps) => {
-	try {
-		const response = await axios.post("http://localhost:8080/api/auth/signin", {
+	const response = await axios
+		.post("http://localhost:8080/api/auth/signin", {
 			email,
 			password,
+		})
+		.catch((e) => {
+			console.error(e);
+			return e;
 		});
-		return response.data;
-	} catch (e) {
-		console.error(e);
-		return e;
+
+	if (response instanceof AxiosError) {
+		return response.response?.data;
 	}
+
+	if (!response.data.user) throw new Error("[AUTH]: No user in response");
+
+	const user = response.data.user;
+
+	if (response.data.accessToken) {
+		document.cookie = `apprenticeshipreporter:${user.email}=${response.data.accessToken}=${response.data.accessToken}`;
+	}
+
+	return response.data;
 };
 
 export const signup = async ({
@@ -54,26 +66,12 @@ export const signup = async ({
 	}
 };
 
-export const authenticateUser = async () => {
+export const authenticateUser = async ({}) => {
 	try {
-		const userParams = { name: "Administrator", pass: "admin" };
-
-		const uid = db.profiles.find((profile) => {
-			if (
-				(profile.userName === userParams.name ||
-					profile.userEmail === userParams.name) &&
-				profile.userPassword === userParams.pass
-			)
-				return profile;
-			return null;
-		})?.userId;
-
-		return uid;
+		return true;
 	} catch (error) {
 		console.error("Error authenticating user:", error);
 	}
-
-	return GUEST_USER.userId;
 };
 
 export default authenticateUser;

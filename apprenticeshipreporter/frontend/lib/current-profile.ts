@@ -6,26 +6,21 @@ const debug = (message: string) => {
 	// console.log(`[DEBUG] ${message}`);
 };
 
-export const currentProfile = async () => {
+export const currentProfile = async ({ email }: { email: string }) => {
 	debug("Starting currentProfile function");
-	const userId = await authenticateUser();
+	const isAuthenticated = await authenticateUser(email);
 
-	if (!userId) {
+	if (!isAuthenticated) {
 		debug("User not authenticated");
 		return null;
 	}
 
-	debug(userId);
-
-	const profile = db.profiles.find((item) => {
-		debug(item.userId);
-		return item.userId === userId;
-	});
-
-	if (!profile) {
-		debug("Profile not found");
-		return null;
-	}
+	const profile = {
+		id: 1,
+		email: "stevenmc59@gmail.com",
+		firstname: "Steven",
+		lastname: "McGough",
+	};
 
 	debug("Profile found");
 	return profile;
