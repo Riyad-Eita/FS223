@@ -74,7 +74,7 @@ export const SignInCard = () => {
 			console.log(response)
 
 			if (!response.user) {
-				toast.error(response.message, {
+				toast.error(`${response.error}: ${response.message}`, {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
 					hideProgressBar: true,
