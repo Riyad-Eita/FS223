@@ -3,10 +3,6 @@ import useSWR from "swr";
 import { v4 as uuidv4 } from "uuid";
 import { UserProfileType } from "@/types";
 
-const GUEST_USER: UserProfileType = {
-	userId: uuidv4(),
-};
-
 type LoginProps = {
 	firstname?: string;
 	lastname?: string;
