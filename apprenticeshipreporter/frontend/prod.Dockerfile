@@ -7,14 +7,13 @@ WORKDIR /app
 # Copy only necessary files for dependency installation
 COPY package*.json package-lock*.json ./
 
+# Copy the rest of the application files
+COPY ./* .
 
 RUN npm cache clean --force
 
 # Install dependencies
 RUN npm ci
-
-# Copy the rest of the application files
-COPY . .
 
 # Build the application
 RUN npm run build
