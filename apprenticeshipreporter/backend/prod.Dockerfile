@@ -1,26 +1,46 @@
-# Use a base image with Maven and Java 17
-FROM maven:3.8.5-openjdk-17 AS builder
 
-# Set the working directory inside the container
-WORKDIR /app
+#
+# Build stage
+#
+FROM eclipse-temurin:17-jdk-jammy AS build
+ENV HOME=/usr/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
+ADD . $HOME
+RUN --mount=type=cache,target=/root/.m2 ./mvnw -f $HOME/pom.xml clean package
 
-# Copy the source code into the container
-COPY . .
-
-# Build the Spring Boot application and package it into a JAR file
-RUN mvn clean package -X
-
-# Create a smaller image to run the application
-FROM openjdk:17-jdk
-
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the JAR file built in the previous stage
-COPY --from=builder /app/target/backend.jar /app/backend.jar
-
-# Expose the port that your Spring Boot application is running on
+#
+# Package stage
+#
+FROM eclipse-temurin:17-jre-jammy 
+ARG JAR_FILE=/usr/app/target/*.jar
+COPY --from=build $JAR_FILE /app/runner.jar
 EXPOSE 8080
+ENTRYPOINT java -jar /app/runner.jar
 
-# Command to run your Spring Boot application
-CMD ["java", "-jar", "backend.jar"]
+
+# # First, use the Maven image with Java 17 as the builder stage
+# FROM maven:3.8.5-openjdk-17 AS builder
+
+# # Set the working directory inside the container
+# WORKDIR /app
+
+# # Copy the source code into the container
+# COPY . .
+
+# RUN mvn clean package
+
+# # Create a smaller image to run the application
+# FROM openjdk:17-jdk
+
+# # Set the working directory inside the container
+# WORKDIR /app
+
+# # Copy the JAR file built in the previous stage
+# COPY --from=builder /app/target/auth-0.0.1-SNAPSHOT.jar /app/auth-0.0.1-SNAPSHOT.jar
+
+# # Expose the port that your Spring Boot application is running on
+# EXPOSE 8080
+
+# # Command to run your Spring Boot application
+# CMD ["java", "-jar", "auth-0.0.1-SNAPSHOT.jar"]
