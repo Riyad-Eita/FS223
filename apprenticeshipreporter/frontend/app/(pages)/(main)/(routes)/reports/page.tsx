@@ -8,7 +8,7 @@ import { DataTable } from "./data-table";
 
 const ReportsOverviewPage = () => {
 	const useReportsHook = useReports();
-	const useUserHook = useUser();
+	const useUserHook = useUser({cookie: ""});
 
 	const data = useReportsHook?.data?.filter(
 		(report: ReportType) =>  Number(report?.userId) === Number(useUserHook.data?.id)
