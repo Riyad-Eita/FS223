@@ -147,6 +147,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+	<finalName>apprenticeshipreporter</finalName>
 		<plugins>
 			<plugin>
 				<groupId>

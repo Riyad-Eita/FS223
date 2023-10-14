@@ -11,8 +11,9 @@ const ReportsOverviewPage = () => {
 	const useUserHook = useUser();
 
 	const data = useReportsHook?.data?.filter(
-		(report: ReportType) => report?.userId === useUserHook.data?.userId
+		(report: ReportType) =>  Number(report?.userId) === Number(useUserHook.data?.id)
 	);
+
 	return (
 		<>
 			<h2>Reports</h2>

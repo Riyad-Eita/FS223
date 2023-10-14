@@ -60,7 +60,7 @@ const SidebarSettings = (profile: UserProfileType) => {
 					<p className="flex-1">My Account</p>
 					<Avatar>
 						<AvatarImage loading="lazy" src={profile?.userImage || ""} />
-						<AvatarFallback>{profile?.userName?.toLocaleUpperCase().slice(0,2)}</AvatarFallback>
+						<AvatarFallback>{profile?.firstname?.toLocaleUpperCase().slice(0,2)}</AvatarFallback>
 					</Avatar>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
