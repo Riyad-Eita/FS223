@@ -8,7 +8,7 @@ services:
       context: ./frontend
       dockerfile: prod.Dockerfile
     env_file:
-      - stack.env
+      - ../stack.env
     restart: always
     ports:
       - 3000:3000
@@ -26,7 +26,7 @@ services:
       dockerfile: prod.Dockerfile
     restart: always
     env_file:
-      - stack.env
+      - ../stack.env
     ports:
       - 8080:8080
       # - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
@@ -52,7 +52,7 @@ services:
     image: mysql:8.0.33
     restart: always
     env_file:
-      - stack.env
+      - ../stack.env
     environment:
       MYSQL_DATABASE: "$MYSQL_DATABASE"
       MYSQL_USER: "$MYSQL_USER"
