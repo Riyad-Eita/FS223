@@ -1,18 +1,38 @@
+import axios, { AxiosError } from "axios";
 import useSWR from "swr";
 
-export const useUser = () => {
-	const { data, isLoading, error } = {
-		data: {
-			id: 1,
-			email: "stevenmc59@gmail.com",
-			firstname: "Steven",
-			lastname: "McGough",
-		},
-		isLoading: false,
-		error: null,
-	}
-	
-	return { data, isLoading, isError: error };
+export const useUser = ({ cookie }: { cookie: string }) => {
+	const { data, isLoading, error } = useSWR("user", async () => {
+		const response = await axios
+			.post("http://fs223.de:8080/api/auth", {
+				cookie,
+			})
+			.catch((e) => {
+				console.error(e);
+				return e;
+			});
+
+		return response;
+	});
+
+	const res = {
+		id: 1,
+		email: "username@gmail.com",
+		firstname: "Steven",
+		lastname: "McGough",
+	};
+
+	// const { data, isLoading, error } = {
+	// 	data: {
+	// 		id: 1,
+	// 		email: "stevenmc59@gmail.com",
+	// 		firstname: "Steven",
+	// 		lastname: "McGough",
+	// 	},
+	// 	isLoading: false,
+	// 	error: null,
+
+	return { data: res, isLoading, isError: error };
 };
 
 export const useReports = () => {

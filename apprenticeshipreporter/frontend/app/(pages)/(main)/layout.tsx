@@ -18,7 +18,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	}
 	const sidebarPos: string = SidebarPos.LEFT;
 
-	const { data: user, isLoading, isError } = useUser();
+	const { data: user, isLoading, isError } = useUser({ cookie: "" });
 
 	if (isError) {
 		return <ForbiddenPage />;

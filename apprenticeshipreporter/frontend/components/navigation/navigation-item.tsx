@@ -1,7 +1,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";
-import { File, Home, LayoutDashboard, LogInIcon, Pen } from "lucide-react";
+import { File, Home, LayoutDashboard, LogInIcon, LogOutIcon, LucideLogIn, Paperclip, Pen } from "lucide-react";
 import { ToolType } from "@/types";
 
 type NavigationItemProps = ToolType & { pos: string };
@@ -30,8 +30,12 @@ export const NavigationItem = ({
 				return <LayoutDashboard />;
 			case "Pen":
 				return <Pen />;
-			case "LogIn":
+			case "SignIn":
 				return <LogInIcon />;
+			case "SignUp":
+				return <Paperclip />;
+			case "SignOut":
+				return <LogOutIcon />;
 			default:
 				return;
 		}
