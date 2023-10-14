@@ -18,7 +18,7 @@ export const session = (jwtoken?: string) => {
 
 export const signin = async ({ email, password }: LoginProps) => {
 	const response = await axios
-		.post("http://localhost:8080/api/auth/signin", {
+		.post("http://maven:8080/api/auth/signin", {
 			email,
 			password,
 		})

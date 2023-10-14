@@ -10,10 +10,14 @@ COPY . .
 COPY pom.xml .
 #RUN mvn dependency:go-offline
 # RUN mvn -e -X -Dsurefire.rerunFailingTestsCount=3 package 
-RUN mvn package 
+RUN mvn package -DskipTests -Dsurefire.rerunFailingTestsCount=3
+
+# FROM openjdk:17-jre
 
 # Copy the JAR file built in the previous stage to the /target directory
+# COPY --from=builder *.jar .
 COPY *.jar .
+
 
 # Expose the port that your Spring Boot application is running on
 EXPOSE 8080

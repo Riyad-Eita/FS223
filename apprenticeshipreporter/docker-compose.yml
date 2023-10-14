@@ -10,7 +10,6 @@ services:
     restart: always
     ports:
       - 3000:3000
-
     networks:
       - net
 
@@ -26,20 +25,6 @@ services:
     ports:
       - 8080:8080
       # - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
-    environment:
-      MYSQL_DATABASE: apprenticeshipreporter
-      MYSQL_USER: nado
-      MYSQL_PASSWORD: lol
-      MYSQL_ROOT_PASSWORD: password
-      MYSQLDB_DOCKER_PORT: 3306
-      SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url": "jdbc:mysql://mysqldb:3306/apprenticeshipreporter?allowPublicKeyRetrieval=true&useSSL=false",
-        "spring.datasource.username": "nado",
-        "spring.datasource.password": "lol",
-        "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQLDialect",
-        "spring.jpa.hibernate.ddl-auto": "update"
-        }'
-
     networks:
       - net
 
@@ -53,12 +38,10 @@ services:
       MYSQL_USER: nado
       MYSQL_PASSWORD: lol
       MYSQL_ROOT_PASSWORD: password
-      MYSQLDB_DOCKER_PORT: 3306
     ports:
       - "3306:3306"
     volumes:
       - my-db:/var/lib/mysql
-
     networks:
       - net
 
