@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy the Maven POM file and build your application
 COPY . .
+
 COPY pom.xml .
 #RUN mvn dependency:go-offline
 # RUN mvn -e -X -Dsurefire.rerunFailingTestsCount=3 package 
