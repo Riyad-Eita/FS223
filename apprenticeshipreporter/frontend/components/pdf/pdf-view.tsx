@@ -29,12 +29,12 @@ const PdfView = ({ ...user }: UserProfileType) => {
 			className="max-w-[40vw]"
 			style={{ filter: "drop-shadow(6px 4px 8px #00000F)" }}
 		>
-			<Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
+			<Worker workerUrl="https://unpkg.com/pdfjs-dist@latest/build/pdf.worker.js">
 				{pdfBytes instanceof Uint8Array && (
 					<div className="inset-0 overflow-hidden h-full w-full min-w-24 min-h-24">
 						<Viewer
 							fileUrl={pdfBytes}
-							// plugins={[defaultLayoutPluginInstance]}
+							plugins={[defaultLayoutPluginInstance]}
 						/>
 					</div>
 				)}

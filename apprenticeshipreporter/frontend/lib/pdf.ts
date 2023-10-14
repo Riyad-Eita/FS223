@@ -7,12 +7,12 @@ export const createPdf = async (user: UserProfileType) => {
 
 	const marioUrl = "https://pdf-lib.js.org/assets/small_mario.png";
 	const marioImageBytes = await fetch(marioUrl).then((res) =>
-		res.arrayBuffer()
+	res.arrayBuffer()
 	);
 
 	const emblemUrl = "https://pdf-lib.js.org/assets/mario_emblem.png";
 	const emblemImageBytes = await fetch(emblemUrl).then((res) =>
-		res.arrayBuffer()
+	res.arrayBuffer()
 	);
 
 	const pdfDoc = await PDFDocument.load(formPdfBytes);
@@ -39,11 +39,11 @@ export const createPdf = async (user: UserProfileType) => {
 	const characterImageField = form.getButton("CHARACTER IMAGE");
 	const factionImageField = form.getButton("Faction Symbol Image");
 
-	nameField.setText(user?.userName || "Mario");
+	nameField.setText(user?.firstname || "Mario");
 	ageField.setText("24 years");
 	heightField.setText(`5' 1"`);
 	weightField.setText("196 lbs");
-	eyesField.setText(user?.userEmail || "blue");
+	eyesField.setText(user?.email || "blue");
 	skinField.setText("white");
 	hairField.setText("brown");
 
