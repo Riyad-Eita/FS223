@@ -45,7 +45,7 @@ services:
         }'
 
     networks:
-      - apprenticeshipreporter
+      - net
 
   db:
     container_name: mysql
@@ -66,7 +66,7 @@ services:
       - my-db:/var/lib/mysql
 
     networks:
-      - apprenticeshipreporter
+      - net
 
 volumes:
   my-db:
