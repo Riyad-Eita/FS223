@@ -17,6 +17,7 @@ services:
     restart: always
     ports:
       - 3000:3000
+    network_mode: bridge
     # networks:
       # - apprenticeshipreporter
 
@@ -39,6 +40,7 @@ services:
     #   "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
     #   "spring.jpa.hibernate.ddl-auto" : "update"
     #   }'
+    network_mode: bridge
     # networks:
       # - apprenticeshipreporter
 
@@ -60,6 +62,7 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+    network_mode: bridge
     # networks:
       # - apprenticeshipreporter
 
