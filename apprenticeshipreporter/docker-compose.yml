@@ -55,6 +55,8 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - net
 
 volumes:
   my-db:
