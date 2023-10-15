@@ -22,12 +22,12 @@ export default function RootLayout({
 			<body
 				className={cn(
 					font.className,
-					"bg-[--background] dark:bg-[--background]"
+					"bg-background] dark:bg-background]"
 				)}
 			>
 				<ThemeProvider
 					attribute="class"
-					defaultTheme="dark"
+					defaultTheme="light"
 					enableSystem={false}
 					storageKey="theme"
 				>

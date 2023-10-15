@@ -38,7 +38,8 @@ export const signin = async ({ email, password }: LoginProps) => {
 	const user = response.data.user;
 
 	if (response.data.accessToken) {
-		document.cookie = `apprenticeshipreporter:${user.email}=${response.data.accessToken}=${response.data.accessToken}`;
+		// document.cookie = `apprenticeshipreporter:${user.email}=${response.data.accessToken}=${response.data.accessToken}`;
+		document.cookie = `apprenticeshipreporter=${response.data.accessToken}=${response.data.accessToken}`;
 	}
 
 	return response.data;
