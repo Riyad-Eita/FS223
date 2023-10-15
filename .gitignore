@@ -2,6 +2,6 @@
 
 .env
 
-/data
+/apprenticeshipreporter/data
 
-/letsencrypt
+/apprenticeshipreporter/letsencrypt
