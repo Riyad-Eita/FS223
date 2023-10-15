@@ -46,12 +46,13 @@ services:
       - net
 
   proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy
+    image: "jc21/nginx-proxy-manager:latest"
     restart: always
     ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
+      - "80:80"
+      - "81:81"
+      - "443:443"
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
@@ -63,3 +64,4 @@ volumes:
 
 networks:
   net:
+    driver: bridge
