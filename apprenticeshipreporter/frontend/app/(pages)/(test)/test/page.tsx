@@ -1,7 +1,10 @@
+
+import MyProfile from "@/components/test/pdfGen";
+
 const PdfGen = () => {
   return (
     <>
-      <h2>PDF Generator</h2>
+      <MyProfile />
     </>
   );
 };
