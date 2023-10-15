@@ -8,7 +8,7 @@ import { UserProfileType } from "@/types";
 
 const EditorPage: React.FC<{}> = () => {
 	const user = useUser({cookie: ""});
-	const userProfile: UserProfileType = user.data;
+	const userProfile: UserProfileType | undefined = user.data;
 	return (
 		<div className="grid md:grid-cols-2 justify-between">
 			<div>

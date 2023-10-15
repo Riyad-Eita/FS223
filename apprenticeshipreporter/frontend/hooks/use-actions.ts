@@ -1,38 +1,34 @@
 import axios, { AxiosError } from "axios";
 import useSWR from "swr";
 
+axios.defaults.baseURL = process.env.AXIOS_BASEURL;
+
 export const useUser = ({ cookie }: { cookie: string }) => {
+	axios.defaults.headers.common = {
+		Authorization: `bearer ${cookie.split("=")[1]}`,
+	};
 	const { data, isLoading, error } = useSWR("user", async () => {
 		const response = await axios
-			.post("http://fs223.de:8080/api/auth", {
-				cookie,
-			})
+			.post("/api/auth/getUser", { cookie: cookie.split("=")[1] })
 			.catch((e) => {
 				console.error(e);
 				return e;
 			});
 
-		return response;
+		if (!response.data?.id) {
+			return {
+				id: 1,
+				email: "email",
+				firstname: "first",
+				lastname: "last",
+			};
+		}
+
+		console.log(response.data);
+		return response.data;
 	});
 
-	const res = {
-		id: 1,
-		email: "username@gmail.com",
-		firstname: "Steven",
-		lastname: "McGough",
-	};
-
-	// const { data, isLoading, error } = {
-	// 	data: {
-	// 		id: 1,
-	// 		email: "stevenmc59@gmail.com",
-	// 		firstname: "Steven",
-	// 		lastname: "McGough",
-	// 	},
-	// 	isLoading: false,
-	// 	error: null,
-
-	return { data: res, isLoading, isError: error };
+	return { data, isLoading, isError: error };
 };
 
 export const useReports = () => {

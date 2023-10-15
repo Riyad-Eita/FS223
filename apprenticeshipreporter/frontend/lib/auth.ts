@@ -3,6 +3,8 @@ import useSWR from "swr";
 import { v4 as uuidv4 } from "uuid";
 import { UserProfileType } from "@/types";
 
+axios.defaults.baseURL = process.env.AXIOS_BASEURL;
+
 type LoginProps = {
 	firstname?: string;
 	lastname?: string;
@@ -18,7 +20,7 @@ export const session = (jwtoken?: string) => {
 
 export const signin = async ({ email, password }: LoginProps) => {
 	const response = await axios
-		.post("http://fs223.de:8080/api/auth/signin", {
+		.post("/api/auth/signin", {
 			email,
 			password,
 		})
@@ -49,7 +51,7 @@ export const signup = async ({
 	password,
 }: LoginProps) => {
 	try {
-		const response = await axios.post("http://fs223.de:8080/api/auth/signup", {
+		const response = await axios.post("/api/auth/signup", {
 			firstname,
 			lastname,
 			email,
