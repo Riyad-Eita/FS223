@@ -59,7 +59,25 @@ services:
     networks:
       - net
 
+  # mysql-workbench:
+  #   image: lscr.io/linuxserver/mysql-workbench:8.0.29
+  #   container_name: MySQL-Workbench
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/London
+  #   volumes:
+  #     - mysql-workbench-data:/config
+  #   ports:
+  #     - 5014:3000
+  #   cap_add:
+  #     - IPC_LOCK
+  #   restart: unless-stopped
+  #   networks:
+  #     - net
+
 volumes:
+  # mysql-workbench-data:
   my-db:
 
 networks:
