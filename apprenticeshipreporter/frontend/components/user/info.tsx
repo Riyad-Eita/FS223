@@ -1,9 +1,18 @@
-"use client"
+"use client";
 
 import { useUser, useReports } from "@/hooks/use-actions";
+import { useEffect, useState } from "react";
 
 const UserInfo = () => {
-	const user = useUser({ cookie: "" });
+	const [docCookie, setdocCookie] = useState("");
+
+	const { data: user, isLoading, isError } = useUser({ cookie: docCookie });
+
+	useEffect(() => {
+		setdocCookie(document.cookie);
+	}, [docCookie]);
+
+	if (!docCookie) return;
 
 	const userHTMLData = (obj: any) => {
 		if (!obj) return null;
@@ -19,7 +28,7 @@ const UserInfo = () => {
 	return (
 		<div className="p-4">
 			<h2>User</h2>
-			{userHTMLData(user?.data)}
+			{userHTMLData(user)}
 		</div>
 	);
 };

@@ -18,14 +18,21 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	}
 	const sidebarPos: string = SidebarPos.LEFT;
 
-	const { data: user, isLoading, isError } = useUser({ cookie: "" });
+	const [docCookie, setdocCookie] = useState("");
+	const { data: user, isLoading, isError } = useUser({ cookie: docCookie });
+
+	useEffect(() => {
+		if (document.cookie.length <= 0) redirect("/signin");
+		setdocCookie(document.cookie);
+	}, [docCookie, user, isLoading]);
 
 	if (isError) {
 		return <ForbiddenPage />;
 	}
 
 	// If user is null then popup login modal and set user
-	if ((user as UserProfileType)?.id === undefined) {
+	// if ((user as UserProfileType)?.id === undefined) {
+	if (user === undefined) {
 		return (
 			<div className="h-screen w-screen flex flex-col justify-center items-center">
 				{(isLoading && (

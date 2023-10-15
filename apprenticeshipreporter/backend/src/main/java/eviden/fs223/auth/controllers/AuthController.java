@@ -1,6 +1,5 @@
 package eviden.fs223.auth.controllers;
 
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +26,7 @@ import eviden.fs223.auth.models.Role;
 import eviden.fs223.auth.models.User;
 import eviden.fs223.auth.payload.request.LoginRequest;
 import eviden.fs223.auth.payload.request.SignupRequest;
+import eviden.fs223.auth.payload.request.ValidateRequest;
 import eviden.fs223.auth.payload.response.JwtResponse;
 import eviden.fs223.auth.payload.response.MessageResponse;
 import eviden.fs223.auth.repository.RoleRepository;
@@ -53,9 +53,21 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @PostMapping("/getUser")
+    public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
+
+        System.out.println(request.getCookie());
+
+        // String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
+
+        // User setUser = userRepository.findByEmail(email).get();
+
+        return ResponseEntity.ok(
+                request.getCookie());
+    }
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
@@ -69,8 +81,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
-                user
-        ));
+                user));
     }
 
     @PostMapping("/signup")
