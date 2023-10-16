@@ -2,14 +2,15 @@ import axios, { AxiosError } from "axios";
 import useSWR from "swr";
 import { v4 as uuidv4 } from "uuid";
 import { UserProfileType } from "@/types";
+import { hash } from "bcrypt";
 
 axios.defaults.baseURL = process.env.AXIOS_BASEURL;
 
 type LoginProps = {
 	firstname?: string;
 	lastname?: string;
-	email?: string;
-	password?: string;
+	email: string;
+	password: string;
 };
 
 export const session = (jwtoken?: string) => {
@@ -19,10 +20,11 @@ export const session = (jwtoken?: string) => {
 };
 
 export const signin = async ({ email, password }: LoginProps) => {
+	const hashedPassword = await hash(password, 10);
 	const response = await axios
 		.post("/api/auth/signin", {
 			email,
-			password,
+			password: hashedPassword,
 		})
 		.catch((e) => {
 			console.error(e);
@@ -52,11 +54,12 @@ export const signup = async ({
 	password,
 }: LoginProps) => {
 	try {
+		const hashedPassword = await hash(password, 10);
 		const response = await axios.post("/api/auth/signup", {
 			firstname,
 			lastname,
 			email,
-			password,
+			password: hashedPassword,
 		});
 		return response;
 	} catch (e) {
