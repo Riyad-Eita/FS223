@@ -97,7 +97,7 @@ public class AuthController {
         User user = new User(signupRequest.getFirstname(),
                 signupRequest.getLastname(),
                 signupRequest.getEmail(),
-                encoder.encode(signupRequest.getPassword()));
+                signupRequest.getPassword());
 
         userRepository.save(user);
 
