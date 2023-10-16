@@ -1,9 +1,7 @@
 package eviden.fs223.auth.payload.response;
 
-import eviden.fs223.auth.models.Role;
 import eviden.fs223.auth.models.User;
 
-import java.util.List;
 
 public class JwtResponse {
   private String token;
