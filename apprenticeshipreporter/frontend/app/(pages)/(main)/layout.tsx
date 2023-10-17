@@ -22,7 +22,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	const { data: user, isLoading, isError } = useUser({ cookie: docCookie });
 
 	useEffect(() => {
-		if (document.cookie.length <= 0) redirect("/signin");
+		// if (document.cookie.length <= 0) redirect("/signin");
 		setdocCookie(document.cookie);
 	}, [docCookie, user, isLoading]);
 
@@ -55,7 +55,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 			<div
 				className={cn(
 					(sidebarPos === "left" && "md:pl-[72px] ml-6") || "md:pt-[72px]",
-					"h-full p-6"
+					"h-full py-14 px-20"
 				)}
 			>
 				{children}

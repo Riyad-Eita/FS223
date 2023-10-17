@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Calendar } from "@/components/ui/calendar";
 import React from "react";
@@ -14,7 +14,7 @@ const CustomCalendar = () => {
 					mode="single"
 					selected={date}
 					onSelect={setDate}
-					className="rounded-md border"
+					className="rounded-md border box-shadow-sm"
 				/>
 			</div>
 		</div>

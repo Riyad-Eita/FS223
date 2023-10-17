@@ -125,7 +125,7 @@ export const SignUpCard = () => {
 	};
 	return (
 		<>
-			<Card className="max-w-full w-[32rem] p-8">
+			<Card className="max-w-full w-[32rem] p-8 bg-popover border-slate-700">
 				<CardHeader className="space-y-1">
 					<div className="flex items-center justify-between">
 						<CardTitle className="text-2xl">Create an account</CardTitle>
