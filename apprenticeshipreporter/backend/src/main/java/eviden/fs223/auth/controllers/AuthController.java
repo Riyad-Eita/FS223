@@ -75,6 +75,12 @@ public class AuthController {
                 res);
     }
 
+    /**
+     * API Route /signin
+     * 
+     * @param loginRequest
+     * @return JWT Token and user
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -88,6 +94,7 @@ public class AuthController {
 
         User user = userRepository.findById(userDetails.getId()).get();
 
+        // TODO remove password from response
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
                 user));
