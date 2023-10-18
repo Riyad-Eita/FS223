@@ -60,10 +60,11 @@ public class AuthController {
 
         // String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
 
-        // User setUser = userRepository.findByEmail(email).get();
+        User setUser = userRepository.findById(1).get();
 
+        String res[] = { setUser.getEmail(), setUser.getFirstname(), setUser.getLastname() };
         return ResponseEntity.ok(
-                request.getCookie());
+                res);
     }
 
     @PostMapping("/signin")
