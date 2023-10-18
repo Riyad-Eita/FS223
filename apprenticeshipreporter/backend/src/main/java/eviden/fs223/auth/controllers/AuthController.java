@@ -70,7 +70,8 @@ public class AuthController {
 
         User setUser = userRepository.findById(1).get();
 
-        String res[] = { setUser.getEmail(), setUser.getFirstname(), setUser.getLastname() };
+        String res[] = { setUser.getId().toString(), setUser.getEmail(), setUser.getFirstname(),
+                setUser.getLastname() };
         return ResponseEntity.ok(
                 res);
     }
