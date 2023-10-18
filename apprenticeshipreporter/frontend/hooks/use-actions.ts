@@ -15,6 +15,9 @@ export const useUser = ({ cookie }: { cookie: string }) => {
 				return e;
 			});
 
+
+			console.log(response)
+
 		if (!response.data?.id) {
 			return {
 				id: 1,
