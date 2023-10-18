@@ -20,11 +20,10 @@ export const session = (jwtoken?: string) => {
 };
 
 export const signin = async ({ email, password }: LoginProps) => {
-	const hashedPassword = await hash(password, 10);
 	const response = await axios
 		.post("/api/auth/signin", {
 			email,
-			password: hashedPassword,
+			password,
 		})
 		.catch((e) => {
 			console.error(e);
@@ -54,12 +53,11 @@ export const signup = async ({
 	password,
 }: LoginProps) => {
 	try {
-		const hashedPassword = await hash(password, 10);
 		const response = await axios.post("/api/auth/signup", {
 			firstname,
 			lastname,
 			email,
-			password: hashedPassword,
+			password,
 		});
 		return response;
 	} catch (e) {
