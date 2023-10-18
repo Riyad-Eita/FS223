@@ -53,12 +53,20 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * Get User if JWT is vaild
+     * 
+     * @param request JWT Token as String
+     * @return userdata without Password
+     */
     @PostMapping("/getUser")
     public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
 
         System.out.println(request.getCookie());
 
         // String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
+
+        // TODO current hardcoded user 1 as redponse
 
         User setUser = userRepository.findById(1).get();
 
