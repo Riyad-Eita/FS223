@@ -39,100 +39,105 @@ import eviden.fs223.auth.security.services.UserDetailsImpl;
 @RestController
 @RequestMapping("/backend/api/auth")
 public class AuthController {
-        @Autowired
-        AuthenticationManager authenticationManager;
+  @Autowired
+  AuthenticationManager authenticationManager;
 
-        @Autowired
-        UserRepository userRepository;
+  @Autowired
+  UserRepository userRepository;
 
-        @Autowired
-        RoleRepository roleRepository;
+  @Autowired
+  RoleRepository roleRepository;
 
-        @Autowired
-        PasswordEncoder encoder;
+  @Autowired
+  PasswordEncoder encoder;
 
-        @Autowired
-        JwtUtils jwtUtils;
+  @Autowired
+  JwtUtils jwtUtils;
 
-        /**
-         * Get User if JWT is vaild
-         * 
-         * @param request JWT Token as String
-         * @return userdata without Password
-         */
-        @PostMapping("/getUser")
-        public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
+  /**
+   * Get User if JWT is vaild
+   * 
+   * @param request JWT Token as String
+   * @return userdata without Password
+   */
+  @PostMapping("/getUser")
+  public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
 
-                System.out.println("[GET USER]: ");
+    System.out.println("[GET USER]: ");
 
-                System.out.println(request.getCookie());
+    System.out.println(request.getCookie());
 
-                if (jwtUtils.validateJwtToken(request.getCookie())) {
-                        System.out.println("[GET USER]: JWT is valid");
-                } else {
-                        System.out.println("[GET USER]: JWT is not valid");
-                        throw new Error("[GetUser]: JWT is not valid.");
-                }
+    try {
+      if (jwtUtils.validateJwtToken(request.getCookie())) {
+        System.out.println("[GET USER]: JWT is valid");
+      } else {
+        System.out.println("[GET USER]: JWT is not valid");
+        throw new Error("[GetUser]: JWT is not valid.");
+      }
+    } catch (Exception e) {
+      // TODO: handle exception
+      System.out.println(e);
+    }
 
-                String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
+    String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
 
-                System.out.println(email);
+    System.out.println(email);
 
-                Optional<User> setUser = userRepository.findByEmail(email);
+    Optional<User> setUser = userRepository.findByEmail(email);
 
-                System.out.println(setUser);
+    System.out.println(setUser);
 
-                // TODO current hardcoded user 1 as redponse
-                if (setUser == null) {
-                        throw new Error("[GetUser]: No User found.");
-                }
+    // TODO current hardcoded user 1 as redponse
+    if (setUser == null) {
+      throw new Error("[GetUser]: No User found.");
+    }
 
-                return ResponseEntity.ok(setUser.get());
-        }
+    return ResponseEntity.ok(setUser.get());
+  }
 
-        /**
-         * API Route /signin
-         * 
-         * @param loginRequest
-         * @return JWT Token and user
-         */
-        @PostMapping("/signin")
-        public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  /**
+   * API Route /signin
+   * 
+   * @param loginRequest
+   * @return JWT Token and user
+   */
+  @PostMapping("/signin")
+  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-                Authentication authentication = authenticationManager.authenticate(
-                                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
-                                                loginRequest.getPassword()));
+    Authentication authentication = authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
+            loginRequest.getPassword()));
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                String jwt = jwtUtils.generateJwtToken(authentication);
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+    String jwt = jwtUtils.generateJwtToken(authentication);
 
-                UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-                User user = userRepository.findById(userDetails.getId()).get();
+    User user = userRepository.findById(userDetails.getId()).get();
 
-                // TODO remove password from response
-                return ResponseEntity.ok(new JwtResponse(
-                                jwt,
-                                user));
-        }
+    // TODO remove password from response
+    return ResponseEntity.ok(new JwtResponse(
+        jwt,
+        user));
+  }
 
-        @PostMapping("/signup")
-        public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
+  @PostMapping("/signup")
+  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
 
-                if (userRepository.existsByEmail(signupRequest.getEmail())) {
-                        System.out.println(ResponseEntity.badRequest());
-                        return ResponseEntity
-                                        .badRequest()
-                                        .body(new MessageResponse("Email is already in use!"));
-                }
-                // Create new user's account
-                User user = new User(signupRequest.getFirstname(),
-                                signupRequest.getLastname(),
-                                signupRequest.getEmail(),
-                                encoder.encode(signupRequest.getPassword()));
+    if (userRepository.existsByEmail(signupRequest.getEmail())) {
+      System.out.println(ResponseEntity.badRequest());
+      return ResponseEntity
+          .badRequest()
+          .body(new MessageResponse("Email is already in use!"));
+    }
+    // Create new user's account
+    User user = new User(signupRequest.getFirstname(),
+        signupRequest.getLastname(),
+        signupRequest.getEmail(),
+        encoder.encode(signupRequest.getPassword()));
 
-                userRepository.save(user);
+    userRepository.save(user);
 
-                return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-        }
+    return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
 }
