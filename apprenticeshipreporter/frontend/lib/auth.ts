@@ -2,7 +2,6 @@ import axios, { AxiosError } from "axios";
 import useSWR from "swr";
 import { v4 as uuidv4 } from "uuid";
 import { UserProfileType } from "@/types";
-import { hash } from "bcrypt-ts";
 
 axios.defaults.baseURL = process.env.AXIOS_BASEURL;
 

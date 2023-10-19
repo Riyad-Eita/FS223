@@ -53,6 +53,12 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * Get User if JWT is vaild
+     * 
+     * @param request JWT Token as String
+     * @return userdata without Password
+     */
     @PostMapping("/getUser")
     public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
 
@@ -60,12 +66,22 @@ public class AuthController {
 
         // String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
 
-        // User setUser = userRepository.findByEmail(email).get();
+        // TODO current hardcoded user 1 as redponse
 
+        User setUser = userRepository.findById(1).get();
+
+        String res[] = { setUser.getId().toString(), setUser.getEmail(), setUser.getFirstname(),
+                setUser.getLastname() };
         return ResponseEntity.ok(
-                request.getCookie());
+                res);
     }
 
+    /**
+     * API Route /signin
+     * 
+     * @param loginRequest
+     * @return JWT Token and user
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -79,6 +95,7 @@ public class AuthController {
 
         User user = userRepository.findById(userDetails.getId()).get();
 
+        // TODO remove password from response
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
                 user));
@@ -97,7 +114,7 @@ public class AuthController {
         User user = new User(signupRequest.getFirstname(),
                 signupRequest.getLastname(),
                 signupRequest.getEmail(),
-                signupRequest.getPassword());
+                encoder.encode(signupRequest.getPassword()));
 
         userRepository.save(user);
 
