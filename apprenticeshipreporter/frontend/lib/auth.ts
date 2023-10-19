@@ -33,7 +33,13 @@ export const signin = async ({ email, password }: LoginProps) => {
 		return response.response?.data;
 	}
 
-	if (!response.data.user) throw new Error("[AUTH]: No user in response");
+	if (response.data && response.data.includes("<html>")) {
+		throw new Error("[AUTH]: HTML response received");
+	}
+
+	if (!response.data.user) {
+		throw new Error("[AUTH]: No user in response");
+	}
 
 	const user = response.data.user;
 
