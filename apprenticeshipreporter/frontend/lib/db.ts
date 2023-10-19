@@ -1,4 +1,3 @@
-import json from "@/db.json";
 import { UserProfileType, ToolType, ReportType } from "@/types";
 
 declare global {
@@ -11,6 +10,6 @@ declare global {
 		| undefined;
 }
 
-export const db = json || globalThis.mysql;
+globalThis.mysql;
 
-if (process.env.NODE_ENV !== "production") globalThis.mysql = [{ ...db }];
+if (process.env.NODE_ENV !== "production") globalThis.mysql = [];
