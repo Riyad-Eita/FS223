@@ -1,6 +1,5 @@
 "use client";
 
-import { db } from "@/lib/db";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
@@ -50,7 +49,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 					"hidden md:flex z-30 flex-col inset-y-0 fixed"
 				)}
 			>
-				<NavigationSidebar profile={user} db={db} pos={sidebarPos} />
+				<NavigationSidebar profile={user} pos={sidebarPos} />
 			</div>
 			<div
 				className={cn(

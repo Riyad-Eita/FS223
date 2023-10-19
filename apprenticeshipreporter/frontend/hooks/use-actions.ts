@@ -9,7 +9,15 @@ export const useUser = ({ cookie }: { cookie: string }) => {
 	};
 	const { data, isLoading, error } = useSWR("user", async () => {
 		const response = await axios
-			.post("/api/auth/getUser", { cookie: cookie.split("=")[1] })
+			.post("/backend/api/auth/getUser", {
+				mode: "no-cors",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					// Authorization: `Bearer: ${token}`,
+					"Content-Type": "application/json",
+					cookie: cookie.split("=")[1],
+				},
+			})
 			.catch((e) => {
 				console.error(e);
 				return e;

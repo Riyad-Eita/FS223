@@ -14,15 +14,10 @@ import { cn } from "@/lib/utils";
 
 type NavigationSidebarProps = {
 	profile: UserProfileType;
-	db: DatabaseType;
 	pos: string;
 };
 
-export const NavigationSidebar = ({
-	profile,
-	db,
-	pos,
-}: NavigationSidebarProps) => {
+export const NavigationSidebar = ({ profile, pos }: NavigationSidebarProps) => {
 	/* if (!profile) {
 		return redirect("/");
 	} */

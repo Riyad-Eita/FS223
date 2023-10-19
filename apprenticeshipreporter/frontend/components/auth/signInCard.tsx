@@ -48,8 +48,8 @@ import { Separator } from "../ui/separator";
 // import { PenBox } from "lucide-react";
 
 const formSchema = z.object({
-	email: z.string().min(1, {
-		message: "Username or Email must be provided",
+	email: z.string().min(1, { message: "Email is required" }).email({
+		message: "Must be a valid email",
 	}),
 	password: z.string().min(1, {
 		message: "Password must be provided",
@@ -71,7 +71,7 @@ export const SignInCard = () => {
 		try {
 			const response = await signin(values);
 
-			console.log(response)
+			console.log(response);
 
 			if (!response.user) {
 				toast.error(`${response.error}: ${response.message}`, {

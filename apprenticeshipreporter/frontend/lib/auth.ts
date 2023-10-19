@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import { UserProfileType } from "@/types";
 
 axios.defaults.baseURL = process.env.AXIOS_BASEURL;
+axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
+// axios.defaults.headers.common.authorization = `Bearer ${token}`;
 
 type LoginProps = {
 	firstname?: string;
@@ -19,15 +21,27 @@ export const session = (jwtoken?: string) => {
 };
 
 export const signin = async ({ email, password }: LoginProps) => {
+	const token = "";
 	const response = await axios
-		.post("/api/auth/signin", {
-			email,
-			password,
-		})
+		.post(
+			"/backend/api/auth/signin",
+			{
+				email,
+				password,
+			},
+			{
+				headers: {
+					crossorigin: "true",
+					mode: "no-cors",
+				},
+			}
+		)
 		.catch((e) => {
 			console.error(e);
 			return e;
 		});
+
+	console.log(response);
 
 	if (response instanceof AxiosError) {
 		return response.response?.data;
@@ -52,7 +66,7 @@ export const signup = async ({
 	password,
 }: LoginProps) => {
 	try {
-		const response = await axios.post("/api/auth/signup", {
+		const response = await axios.post("/backend/api/auth/signup", {
 			firstname,
 			lastname,
 			email,
