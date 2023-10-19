@@ -38,12 +38,8 @@ public class JwtUtils {
         .compact();
   }
 
-
-  // TODO change back
   private Key key() {
-    SecretKey a = Keys.hmacShaKeyFor(Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded());
-    System.out.println(a);
-    return a;
+    return Keys.hmacShaKeyFor(Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded());
   }
 
   public String getUserNameFromJwtToken(String token) {
