@@ -63,11 +63,17 @@ public class AuthController {
         @PostMapping("/getUser")
         public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
 
+                System.out.println("[GET USER]: " + request.toString());
+
                 System.out.println(request.getCookie());
 
                 String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
 
+                System.out.println(email);
+
                 Optional<User> setUser = userRepository.findByEmail(email);
+
+                System.out.println(setUser);
 
                 // TODO current hardcoded user 1 as redponse
                 if (setUser == null) {
