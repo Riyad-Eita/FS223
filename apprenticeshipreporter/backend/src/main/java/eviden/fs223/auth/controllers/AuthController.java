@@ -63,9 +63,16 @@ public class AuthController {
         @PostMapping("/getUser")
         public ResponseEntity<?> validateUser(@Valid @RequestBody ValidateRequest request) {
 
-                System.out.println("[GET USER]: " + request.toString());
+                System.out.println("[GET USER]: ");
 
                 System.out.println(request.getCookie());
+
+                if (jwtUtils.validateJwtToken(request.getCookie())) {
+                        System.out.println("[GET USER]: JWT is valid");
+                } else {
+                        System.out.println("[GET USER]: JWT is not valid");
+                        throw new Error("[GetUser]: JWT is not valid.");
+                }
 
                 String email = jwtUtils.getUserNameFromJwtToken(request.getCookie());
 
