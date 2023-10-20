@@ -34,12 +34,11 @@ export const signin = async ({ email, password }: LoginProps) => {
 
 		if (response instanceof AxiosError) {
 			return response.response?.data;
-		}
-
-		if (!response.data.user) {
-			throw new Error("[AUTH]: No user in response");
-		}
-
+    }
+    
+	if (!response.data.user) {
+		throw new Error("[AUTH]: No user in response");
+	}
 		const user = response.data.user;
 
 		if (response.data.accessToken) {

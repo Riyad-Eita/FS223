@@ -1,4 +1,5 @@
 package eviden.fs223.auth.controllers;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,19 +15,19 @@ public class TestController {
     return "Public Content.";
   }
 
-  @GetMapping("/user")
+  @GetMapping("/backend/user")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
   public String userAccess() {
     return "User Content.";
   }
 
-  @GetMapping("/mod")
+  @GetMapping("/backend/mod")
   @PreAuthorize("hasRole('MODERATOR')")
   public String moderatorAccess() {
     return "Moderator Board.";
   }
 
-  @GetMapping("/admin")
+  @GetMapping("/backend/admin")
   @PreAuthorize("hasRole('ADMIN')")
   public String adminAccess() {
     return "Admin Board.";
