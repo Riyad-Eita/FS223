@@ -54,8 +54,8 @@ services:
       - "81:81"
       - "443:443"
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - proxy_data:/data
+      - proxy_letsencrypt:/etc/letsencrypt
     networks:
       - net
 
@@ -79,6 +79,8 @@ services:
 volumes:
   # mysql-workbench-data:
   my-db:
+  proxy_data:
+  proxy_letsencrypt:
 
 networks:
   net:
