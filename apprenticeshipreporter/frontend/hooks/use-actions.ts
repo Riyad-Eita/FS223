@@ -5,17 +5,24 @@ axios.defaults.baseURL = process.env.AXIOS_BASEURL;
 
 export const useUser = ({ cookie }: { cookie: string }) => {
 	axios.defaults.headers.common = {
-		Authorization: `bearer ${cookie.split("=")[1]}`,
+		// Authorization: `bearer ${cookie.split("=")[1]}`,
 	};
 	const { data, isLoading, error } = useSWR("user", async () => {
 		const response = await axios
-			.post("/api/auth/getUser", { cookie: cookie.split("=")[1] })
+			.post("/backend/api/auth/getUser", {
+				cookie: cookie,
+				timeout: 2000,
+				headers: {
+					Authorization: `Bearer: ${cookie}`,
+					Accept: "application/json",
+				},
+			})
 			.catch((e) => {
 				console.error(e);
 				return e;
 			});
 
-		if (!response.data?.id) {
+		if (!response.data) {
 			return {
 				id: 1,
 				email: "email",

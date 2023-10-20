@@ -11,11 +11,28 @@
 	border: solid 1px red;
 }
 
+/* * {
+	border: solid 1px red;
+} */
+
 @layer base {
 	.box-shadow {
 		box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
 		backdrop-filter: blur(14px);
 		background-color: rgba(255, 255, 255, 0.164);
+	}
+	.box-shadow-md {
+		box-shadow: 0 14px 20px #000000;
+	}
+	.box-shadow-sm {
+		box-shadow: 0 4px 6px rgba(129, 124, 124, 0.3);
+		backdrop-filter: blur(6px);
+	}
+	.card {
+		flex: 1;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
@@ -46,13 +63,13 @@
 	:root {
 		--background: 0 0% 95%;
 		--foreground: 20 14.3% 4.1%;
-		--card: 0 0% 100%;
+		--card: 0 0% 98%;
 		--card-foreground: 20 14.3% 4.1%;
-		--popover: 0 0% 100%;
+		--popover: 0 0% 99%;
 		--popover-foreground: 20 14.3% 4.1%;
 		--primary: 24.6 95% 53.1%;
 		--primary-foreground: 60 9.1% 97.8%;
-		--secondary: 60 4.8% 95.9%;
+		--secondary: 50 4.8% 92%;
 		--secondary-foreground: 24 9.8% 10%;
 		--muted: 60 4.8% 95.9%;
 		--muted-foreground: 25 5.3% 44.7%;

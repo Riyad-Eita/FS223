@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { UserProfileType } from "@/types";
 
 axios.defaults.baseURL = process.env.AXIOS_BASEURL;
+// axios.defaults.headers.common.authorization = `Bearer ${token}`;
 
 type LoginProps = {
 	firstname?: string;
@@ -19,36 +20,37 @@ export const session = (jwtoken?: string) => {
 };
 
 export const signin = async ({ email, password }: LoginProps) => {
-	const response = await axios
-		.post("/api/auth/signin", {
-			email,
-			password,
-		})
-		.catch((e) => {
-			console.error(e);
-			return e;
-		});
+	const token = "";
+	try {
+		const response = await axios
+			.post("/backend/api/auth/signin", {
+				email,
+				password,
+			})
+			.catch((e) => {
+				console.error(e);
+				return e;
+			});
 
-	if (response instanceof AxiosError) {
-		return response.response?.data;
-	}
-
-	if (response.data && response.data.includes("<html>")) {
-		throw new Error("[AUTH]: HTML response received");
-	}
-
+		if (response instanceof AxiosError) {
+			return response.response?.data;
+    }
+    
 	if (!response.data.user) {
 		throw new Error("[AUTH]: No user in response");
 	}
+		const user = response.data.user;
 
-	const user = response.data.user;
+		if (response.data.accessToken) {
+			// document.cookie = `apprenticeshipreporter:${user.email}=${response.data.accessToken}=${response.data.accessToken}`;
+			document.cookie = `apprenticeshipreporter=${response.data.accessToken}=${response.data.accessToken}`;
+		}
 
-	if (response.data.accessToken) {
-		// document.cookie = `apprenticeshipreporter:${user.email}=${response.data.accessToken}=${response.data.accessToken}`;
-		document.cookie = `apprenticeshipreporter=${response.data.accessToken}=${response.data.accessToken}`;
+		return response.data;
+	} catch (e) {
+		console.error(e);
+		return e;
 	}
-
-	return response.data;
 };
 
 export const signup = async ({
@@ -58,7 +60,7 @@ export const signup = async ({
 	password,
 }: LoginProps) => {
 	try {
-		const response = await axios.post("/api/auth/signup", {
+		const response = await axios.post("/backend/api/auth/signup", {
 			firstname,
 			lastname,
 			email,

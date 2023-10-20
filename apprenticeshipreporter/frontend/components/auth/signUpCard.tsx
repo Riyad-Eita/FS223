@@ -78,7 +78,7 @@ export const SignUpCard = () => {
 			console.log(response)
 
 			if (response instanceof AxiosError) {
-				toast.error(response.message, {
+				toast.error(`${response.name}: ${response.message}`, {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
 					hideProgressBar: true,
@@ -125,7 +125,7 @@ export const SignUpCard = () => {
 	};
 	return (
 		<>
-			<Card className="max-w-full w-[32rem] p-8">
+			<Card className="max-w-full w-[32rem] p-8 bg-popover border-slate-700">
 				<CardHeader className="space-y-1">
 					<div className="flex items-center justify-between">
 						<CardTitle className="text-2xl">Create an account</CardTitle>

@@ -48,8 +48,8 @@ import { Separator } from "../ui/separator";
 // import { PenBox } from "lucide-react";
 
 const formSchema = z.object({
-	email: z.string().min(1, {
-		message: "Username or Email must be provided",
+	email: z.string().min(1, { message: "Email is required" }).email({
+		message: "Must be a valid email",
 	}),
 	password: z.string().min(1, {
 		message: "Password must be provided",
@@ -71,7 +71,7 @@ export const SignInCard = () => {
 		try {
 			const response = await signin(values);
 
-			console.log(response)
+			console.log(response);
 
 			if (!response.user) {
 				toast.error(`${response.error}: ${response.message}`, {
@@ -116,7 +116,7 @@ export const SignInCard = () => {
 
 	return (
 		<>
-			<Card className="max-w-full w-[32rem] p-8">
+			<Card className="max-w-full w-[32rem] p-8 bg-popover border-slate-700">
 				<CardHeader className="space-y-1">
 					<div className="flex items-center justify-between">
 						<CardTitle className="text-2xl">Welcome back!</CardTitle>
@@ -137,12 +137,20 @@ export const SignInCard = () => {
 												Email or Username
 											</FormLabel>
 											<FormControl>
-												<Input
-													disabled={isLoading}
-													className="bg-[--card]/20 border-0 focus-visible:ring-1 text-[--card] focus-visible:ring-offset-0"
-													placeholder="Enter Your Email"
-													{...field}
-												/>
+												{(isLoading && (
+													<Input
+														disabled
+														className="bg-muted focus-visible:ring-1 text-muted-foreground focus-visible:ring-offset-0"
+														placeholder="Enter Your Email"
+														{...field}
+													/>
+												)) || (
+													<Input
+														className="bg-secondary border-0 focus-visible:ring-1 text-foreground focus-visible:ring-offset-0"
+														placeholder="Enter Your Email"
+														{...field}
+													/>
+												)}
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
 												{form.formState.errors.email?.message}
@@ -159,13 +167,22 @@ export const SignInCard = () => {
 												Password
 											</FormLabel>
 											<FormControl>
-												<Input
-													disabled={isLoading}
-													type="password"
-													className="bg-[--card]/20 border-0 focus-visible:ring-1 text-[--card] focus-visible:ring-offset-0"
-													placeholder="Enter Password"
-													{...field}
-												/>
+												{(isLoading && (
+													<Input
+														disabled
+														type="password"
+														className="bg-muted border-0 focus-visible:ring-1 text-muted-foreground focus-visible:ring-offset-0"
+														placeholder="Enter Password"
+														{...field}
+													/>
+												)) || (
+													<Input
+														type="password"
+														className="bg-secondary border-0 focus-visible:ring-1 text-foreground focus-visible:ring-offset-0"
+														placeholder="Enter Password"
+														{...field}
+													/>
+												)}
 											</FormControl>
 											<FormMessage className="text-xs text-red-500">
 												{form.formState.errors.password?.message}

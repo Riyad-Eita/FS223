@@ -1,32 +1,38 @@
 "use client";
 
-import { db } from "@/lib/db";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import ForbiddenPage from "@/components/errors/forbidden-page";
 import { useUser } from "@/hooks/use-actions";
 import { redirect } from "next/navigation";
-import { UserProfileType } from "@/types";
 import { cn } from "@/lib/utils";
-import { session } from "@/lib/auth";
+import { useCookies } from "react-cookie";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	enum SidebarPos {
 		TOP = "top",
 		LEFT = "left",
 	}
-	const sidebarPos: string = SidebarPos.LEFT;
+	const sidebarPos: string = SidebarPos.TOP;
 
-	const [docCookie, setdocCookie] = useState("");
-	const { data: user, isLoading, isError } = useUser({ cookie: docCookie });
+	const [cookies, setCookie, removeCookie] = useCookies([
+		"apprenticeshipreporter",
+	]);
+	const {
+		data: user,
+		isLoading,
+		isError,
+	} = useUser({ cookie: cookies.apprenticeshipreporter });
 
 	useEffect(() => {
-		if (document.cookie.length <= 0) redirect("/signin");
-		setdocCookie(document.cookie);
-	}, [docCookie, user, isLoading]);
+		if (!cookies.apprenticeshipreporter) redirect("/signin");
+		if (document.cookie)
+			setCookie("apprenticeshipreporter", document.cookie.split("=")[1]);
+	}, [user, isLoading, cookies]);
 
 	if (isError) {
+		removeCookie("apprenticeshipreporter");
 		return <ForbiddenPage />;
 	}
 
@@ -50,12 +56,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 					"hidden md:flex z-30 flex-col inset-y-0 fixed"
 				)}
 			>
-				<NavigationSidebar profile={user} db={db} pos={sidebarPos} />
+				<NavigationSidebar profile={user} pos={sidebarPos} />
 			</div>
 			<div
 				className={cn(
 					(sidebarPos === "left" && "md:pl-[72px] ml-6") || "md:pt-[72px]",
-					"h-full p-6"
+					"h-full py-14 px-20"
 				)}
 			>
 				{children}
