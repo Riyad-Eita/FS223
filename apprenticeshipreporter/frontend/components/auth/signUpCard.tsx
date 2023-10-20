@@ -78,7 +78,7 @@ export const SignUpCard = () => {
 			console.log(response)
 
 			if (response instanceof AxiosError) {
-				toast.error(response.message, {
+				toast.error(`${response.name}: ${response.message}`, {
 					position: toast.POSITION.TOP_CENTER,
 					autoClose: 2000,
 					hideProgressBar: true,

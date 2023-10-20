@@ -34,8 +34,7 @@ import eviden.fs223.auth.repository.UserRepository;
 import eviden.fs223.auth.security.jwt.JwtUtils;
 import eviden.fs223.auth.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = { "Origin", "Access-Control-Allow-Origin", "Content-Type",
-                "mode" })
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/backend/api/auth")
 public class AuthController {

@@ -5,16 +5,18 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useRedirectAfterSomeSeconds from "@/hooks/use-redirect-timer";
 import { LucideHeartHandshake } from "lucide-react";
+import { useCookies } from "react-cookie";
 
 const SignOutCard = () => {
 	const { secondsRemaining } = useRedirectAfterSomeSeconds("/", 10);
+	const [cookies, setCookie, removeCookie] = useCookies([
+		"apprenticeshipreporter",
+	]);
 
 	useEffect(() => {
 		logoutToast();
-		document.cookie = "apprenticeshipreporter=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
+		removeCookie("apprenticeshipreporter");
 	}, []);
-
-
 
 	const logoutToast = () => {
 		toast.success("Logged out successfully", {

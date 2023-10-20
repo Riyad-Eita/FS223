@@ -3,7 +3,7 @@ const nextConfig = {
 	reactStrictMode: false,
 	env: {
 		// AXIOS_BASEURL: "http://fs223.de:8080"
-		AXIOS_BASEURL: "http://localhost:8080",
+		// AXIOS_BASEURL: "http://localhost:8080",
 	},
 	experimental: {
 		serverActions: true,
